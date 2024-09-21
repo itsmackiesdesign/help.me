@@ -8,15 +8,16 @@ from django.shortcuts import get_object_or_404
 
 class ContactListCreateAPIView(APIView):
     def get(self, request):
-        contact = get_object_or_404(Contact, user=request.user)
-        serializer = ContactSerializer(contact)
+        contacts = Contact.objects.filter(member=request.user.member)
+        serializer = ContactSerializer(contacts, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
         serializer = ContactSerializer(data=request.data, context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        serializer.save(created_by=request.user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class ContactDetailAPIVIew(APIView):

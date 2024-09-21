@@ -6,7 +6,7 @@ import Tooltip from "@core/components/Tooltip.tsx"
 import Button from "@core/components/Button.tsx"
 import { ReactNode } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-import { Cog8ToothIcon, ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline"
+import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline"
 import { signOut } from "@users/utils/auth.ts"
 import { useQueryClient } from "react-query"
 import { ChartBarIcon, UsersIcon } from "@heroicons/react/20/solid"
@@ -25,9 +25,9 @@ export default function Layout({ children }: Props) {
                 title="Help me"
                 end={
                     <Group className="items-center">
-                        <Tooltip tip="Settings" position="bottom">
-                            <Button to="/settings" icon={Cog8ToothIcon} size="sm" color="ghost" circle />
-                        </Tooltip>
+                        {/*<Tooltip tip="Settings" position="bottom">*/}
+                        {/*    <Button to="/settings" icon={Cog8ToothIcon} size="sm" color="ghost" circle />*/}
+                        {/*</Tooltip>*/}
 
                         <Tooltip tip="Logout" position="bottom">
                             <Button
@@ -55,7 +55,7 @@ export default function Layout({ children }: Props) {
                         <li>
                             <NavLink className="nav-btn" to="/members" end>
                                 <Icon icon={UsersIcon} className="w-4 h-4" />
-                                <span>Clients</span>
+                                <span>Members</span>
                             </NavLink>
                         </li>
                     </ul>

@@ -10,7 +10,7 @@ import { isAuthenticated, signIn } from "@users/utils/auth.ts"
 import { Navigate, useNavigate } from "react-router-dom"
 
 export default function CheckIn() {
-    const { phone, telegramLink } = useContext(AuthContext)
+    const { phone } = useContext(AuthContext)
     const methods = useForm<CheckInFormData>()
     const checkIn = useCheckIn()
     const navigate = useNavigate()
@@ -33,7 +33,7 @@ export default function CheckIn() {
                     onSubmit={methods.handleSubmit(onSubmit)}
                     className="flex flex-col gap-3 w-xs lg:w-[30%] max-w-sm"
                 >
-                    <h3 className="text-center">Login</h3>
+                    <h3 className="text-center">Check in</h3>
 
                     <FormInput
                         name="code"
@@ -45,19 +45,7 @@ export default function CheckIn() {
                         autoFocus
                     />
 
-                    <Button className="w-full" text="Check in" loading={checkIn.isLoading} submit />
-
-                    <a
-                        href={telegramLink}
-                        target="_blank"
-                        className="w-full btn btn-accent text-white"
-                        rel="noreferrer"
-                    >
-                        Open Telegram
-                        <img className="w-5 h-5" src="/telegram.png" alt="telegram white icon" />
-                    </a>
-
-                    <p className="text-center text-base-content text-sm">Get code</p>
+                    <Button className="w-full" color="primary" text="Check in" loading={checkIn.isLoading} submit />
                 </form>
             </FormProvider>
         </AuthLayout>

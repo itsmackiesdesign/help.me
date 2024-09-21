@@ -7,7 +7,9 @@ import {
     CheckCircleIcon,
     XCircleIcon,
     IdentificationIcon,
+    InformationCircleIcon,
 } from "@heroicons/react/24/outline"
+import { formatDate } from "@core/utils/date.ts"
 
 export type MemberInfoProps = {
     member: MemberType
@@ -46,29 +48,37 @@ export default function MemberInfo({ member }: MemberInfoProps) {
                     </p>
                 </div>
                 <div className="flex items-center">
-                    <XCircleIcon
-                        className={`w-5 h-5 mr-2 ${member.user.verifiedAt ? "text-green-600" : "text-red-600"}`}
-                    />
+                    {member.user.verifiedAt ? (
+                        <CheckCircleIcon
+                            className={`w-5 h-5 mr-2 ${member.user.verifiedAt ? "text-green-600" : "text-red-600"}`}
+                        />
+                    ) : (
+                        <XCircleIcon
+                            className={`w-5 h-5 mr-2 ${member.user.verifiedAt ? "text-error" : "text-red-600"}`}
+                        />
+                    )}
                     <p className="text-gray-700">
                         <strong>Verified:</strong>{" "}
                         {member.user.verifiedAt ? (
-                            <span className="text-green-600">
-                                Verified on {new Date(member.user.verifiedAt).toLocaleDateString()}
-                            </span>
+                            <span className="text-green-600">Verified on {formatDate(member.user.verifiedAt)}</span>
                         ) : (
-                            <span className="text-red-600">Not Verified</span>
+                            <span className="text-error">Not Verified</span>
                         )}
                     </p>
                 </div>
-                <div className="col-span-2">
-                    <div className="flex items-center">
-                        <CheckCircleIcon className="w-5 h-5 mr-2 text-gray-600" />
-                        <p className="text-gray-700">
-                            <strong>Extra Info:</strong>
-                        </p>
+                {member.extra ? (
+                    <div className="col-span-2 border p-3 rounded-lg border-info">
+                        <div className="flex items-center text-info">
+                            <InformationCircleIcon className="w-5 h-5 mr-2 text-info" />
+                            <p>
+                                <strong>Extra Info:</strong>
+                            </p>
+                        </div>
+                        <p className="mt-2 text-gray-700 whitespace-pre-line break-words">{member.extra}</p>
                     </div>
-                    <p className="mt-2 text-gray-700 whitespace-pre-line break-words">{member.extra}</p>
-                </div>
+                ) : (
+                    ""
+                )}
             </div>
         </div>
     )

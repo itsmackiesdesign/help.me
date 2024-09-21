@@ -3,6 +3,7 @@ from members.models import Contact
 
 
 class ContactSerializer(serializers.ModelSerializer):
+    member = serializers.PrimaryKeyRelatedField(read_only=True)
 
     def validate_phone(self, value):
         if not value.startswith('998'):
@@ -19,14 +20,15 @@ class ContactSerializer(serializers.ModelSerializer):
         return value
 
     def create(self, validated_data):
-        contact = Contact.objects.create(**validated_data)
+        member = self.context['request'].user.member
+        created_by = self.context['request'].user
+        contact = Contact.objects.create(member=member, created_by=created_by, **validated_data)
         return contact
 
     def update(self, instance, validated_data):
         instance.full_name = validated_data.get('full_name', instance.full_name)
         instance.phone = validated_data.get('phone', instance.phone)
         instance.relationship = validated_data.get('relationship', instance.relationship)
-        instance.member = validated_data.get('member', instance.member)
         instance.save()
         return instance
 

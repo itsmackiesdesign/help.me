@@ -26,11 +26,11 @@ export default function SignIn() {
         const response = await signIn.mutateAsync(data)
         setTelegramLink(response.message)
 
-        navigate("/check-in")
+        navigate("/users/check-in")
     }
 
     if (isAuthenticated()) {
-        return <Navigate to="/dashboard" replace />
+        return <Navigate to="/" replace />
     }
 
     return (
@@ -65,9 +65,7 @@ export default function SignIn() {
                         </label>
                     </label>
 
-                    <Button className="w-full" text="Send code" loading={signIn.isLoading} submit />
-
-                    <p className="text-center text-base-content text-sm">Open Telegram</p>
+                    <Button className="w-full" color="primary" text="Send code" loading={signIn.isLoading} submit />
                 </form>
             </FormProvider>
         </AuthLayout>

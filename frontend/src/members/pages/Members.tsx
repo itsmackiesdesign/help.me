@@ -6,7 +6,7 @@ import { MemberType } from "@members/types.ts"
 
 const staticData = [
     {
-        user: { id: 1, phone: "+", verifiedAt: "", firstName: "John", lastName: "Doe" },
+        user: { id: 1, phone: "+", verifiedAt: "2022-01-01", firstName: "John", lastName: "Doe" },
         birthdate: "1990-01-01",
         address: "123 Main St",
         extra: "Extra info",
@@ -23,7 +23,10 @@ const staticData = [
         user: { id: 1, phone: "+", verifiedAt: "", firstName: "Alice", lastName: "Johnson" },
         birthdate: "2000-03-01",
         address: "789 Main St",
-        extra: "Extra info",
+        extra:
+            "  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores debitis neque pariatur possimus\n" +
+            "                quae quam quod temporibus veniam vitae. Accusantium aperiam earum, est id magni natus obcaecati? Animi\n" +
+            "                consequuntur cum deserunt, distinctio, dolor dolore et fuga libero nisi rerum sint.",
         id: 3,
     },
 ]
@@ -54,7 +57,7 @@ export default function Members() {
 
     return (
         <Layout>
-            <h1 className="text-2xl font-bold my-4">Clients</h1>
+            <h1 className="text-2xl font-bold my-4">Members</h1>
 
             <InfiniteCards
                 responsive
@@ -63,7 +66,8 @@ export default function Members() {
                     title: (item) => item.user.firstName,
                     content: (item) => item.user.lastName,
                 }}
-                renderItem={renderItem}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                renderItem={renderItem as any}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
             />
         </Layout>

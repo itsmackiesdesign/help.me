@@ -24,7 +24,7 @@ export default function InfiniteCards<Item extends ModelType>({
     renderItem,
 }: Props<Item>) {
     const render = renderItem! ? renderItem : (item: Item) => renderCardDefault(item, cardProps)
-    const notMore = <div className="text-center text-gray-500 my-4">Barchasi yuklandi</div>
+    const notMore = <div className="text-center text-gray-500 my-4">Loaded all</div>
 
     return (
         <Fragment>
