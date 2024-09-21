@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from calls.models import Call
 from calls.serializers.call import CallSerializer
 from toolkit.views import ListMixin, CreateMixin, UpdateMixin, RetrieveMixin
+from users.utils.authentication import CustomParamsAuthentication
 
 
 class CallListViewSet(ListMixin, CreateMixin, GenericAPIView):
@@ -21,6 +22,8 @@ class CallDetailViewSet(RetrieveMixin, UpdateMixin, GenericAPIView):
 
 
 class CallEventStreamViewSet(APIView):
+    authentication_classes = (CustomParamsAuthentication,)
+
     def get(self, request):
         def event_stream():
             while True:

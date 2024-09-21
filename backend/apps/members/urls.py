@@ -1,5 +1,5 @@
 from django.urls import path
-from .views.members import MemberListCreateAPIView, MemberDetailAPIView, MemberListCreate
+from .views.members import MemberListCreateAPIView, MemberDetailAPIView, MyMemberAPIView
 from .views.contact import ContactListCreateAPIView, ContactDetailAPIView
 
 urlpatterns = [
@@ -7,5 +7,5 @@ urlpatterns = [
     path('member/<int:pk>/', MemberDetailAPIView.as_view(), name='member-detail'),
     path('contacts/', ContactListCreateAPIView.as_view(), name='contact-list-create'),
     path('contacts/<int:pk>/', ContactDetailAPIView.as_view(), name='contact-detail'),
-    path('member-mobile/', MemberListCreate.as_view(), name='member-list-create-mobile'),
+    path('my-member/', MyMemberAPIView.as_view(), name='member-list-create-mobile'),
 ]

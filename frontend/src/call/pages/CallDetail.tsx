@@ -2,25 +2,36 @@ import { useParams } from "react-router-dom"
 import Layout from "@core/components/Layout"
 import { PhoneIcon } from "@heroicons/react/24/solid"
 import Group from "@core/components/Group"
-import { IdentificationIcon, CakeIcon, MapIcon, CheckCircleIcon } from "@heroicons/react/24/solid"
-import Timeline from "@core/components/Timeline"
+import { IdentificationIcon, CakeIcon, MapIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
 import { useFetch } from "@core/hooks/request"
 import { CallType } from "@call/types"
 import { CALL_DETAIL } from "@call/urls"
 import { request } from "@core/utils/baseAxios"
 import { formatDate } from "@core/utils/date"
+import Button from "@core/components/Button"
+import Badge from "@core/components/Badge"
+import { useMutate } from "@core/hooks/request"
 
 export default function CallDetail() {
     const { id } = useParams<{ id: string }>()
     const call = useFetch<CallType>(["calls", id], () => request({ url: CALL_DETAIL.replace("{id}", id as string) }))
 
-    const timelineItems = [
-        { status: "Initiated 1", isStart: true },
-        { status: "Initiated 2", isStart: true, isEnd: true },
-        { status: "Initiated 3", isStart: true, isEnd: true },
-        { status: "Initiated 4", isStart: true, isEnd: true },
-        { status: "Initiated 5", isEnd: true },
-    ]
+    const status = {
+        initiated: "initiated",
+        called: "Called",
+        canceled: "Canceled",
+        ambulance_requested: "Ambulance Requested",
+        finished: "Finished",
+    }
+
+    const handleRequestAmbulance = useMutate(
+        (data) => request({ url: CALL_DETAIL.replace("{id}", id as string), method: "PUT", data }),
+        {
+            onSuccess: () => {
+                call.refetch()
+            },
+        }
+    )
 
     return (
         <Layout>
@@ -38,11 +49,18 @@ export default function CallDetail() {
                 </div>
             </div>
 
-            <Group className="w-full my-5 items-center justify-between p-4">
-                <div className="w-full p-6 shadow-lg rounded-lg">
+            <Group className="w-full my-5 p-4">
+                <div className="w-1/2 p-6 shadow-lg rounded-lg">
                     <h2 className="text-2xl font-bold flex items-center mb-4">
-                        <IdentificationIcon className="w-6 h-6 mr-2 text-primary" />
                         {call.data?.member.user.firstName} {call.data?.member.user.lastName}
+                        <Button 
+                            size="sm" 
+                            className="ml-2 bg-primary text-white"
+                            onClick={() => handleRequestAmbulance.mutate({ status: "ambulance_requested" })}
+                            disabled={call.data?.status === "ambulance_requested"}
+                        >
+                            Request Ambulance
+                        </Button>
                     </h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -51,6 +69,14 @@ export default function CallDetail() {
 
                             <p className="text-gray-700">
                                 <strong>Phone:</strong> {call.data?.member.user.phone}
+                            </p>
+                        </div>
+
+                        <div className="flex items-center">
+                            <IdentificationIcon className="w-5 h-5 mr-2 text-gray-600" />
+
+                            <p className="text-gray-700">
+                                <strong>Status:</strong> <Badge size="sm" className="ml-2 bg-primary text-white p-3 border-none" content={status[call.data?.status as keyof typeof status]} />
                             </p>
                         </div>
 
@@ -70,17 +96,6 @@ export default function CallDetail() {
                             </p>
                         </div>
 
-                        <div className="flex items-center">
-                            <CheckCircleIcon className={"w-5 h-5 mr-2 text-green-600"} />
-
-                            <p className="text-gray-700">
-                                <strong>Verified:</strong>{" "}
-                                <span className="text-green-600">
-                                    Verified on {formatDate(call.data?.member.birthdate as string)}
-                                </span>
-                            </p>
-                        </div>
-
                         <div className="col-span-2 border p-3 rounded-lg border-info">
                             <div className="flex items-center ">
                                 <CheckCircleIcon className="w-5 h-5 mr-2 text-gray-600" />
@@ -97,8 +112,7 @@ export default function CallDetail() {
                     </div>
                 </div>
 
-                <div className="w-full">
-                    <Timeline items={timelineItems} />
+                <div className="w-1/2">
                 </div>
             </Group>
         </Layout>

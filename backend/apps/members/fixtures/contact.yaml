@@ -1,0 +1,18 @@
+- model: "members.Contact"
+  pk: 1
+  fields:
+    full_name: Amigo Amigoyev
+    phone: 998998887766
+    relationship: father
+    member: 1
+    created_by_id: 1
+
+
+- model: "members.Contact"
+  pk: 2
+  fields:
+    full_name: Nikita Nikitaev
+    phone: 998994445522
+    relationship: brother
+    member: 1
+    created_by_id: 1
