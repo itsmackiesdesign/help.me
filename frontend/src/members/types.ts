@@ -11,7 +11,7 @@ export type UserType = ModelType & {
 
 export type MemberType = ModelType & {
     birthdate: string
-    user: ID | UserType
+    user: UserType
     address: string
     extra: string
 }

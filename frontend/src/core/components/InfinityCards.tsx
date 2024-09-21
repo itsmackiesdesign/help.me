@@ -25,14 +25,13 @@ export default function InfiniteCards<Item extends ModelType>({
 }: Props<Item>) {
     const render = renderItem! ? renderItem : (item: Item) => renderCardDefault(item, cardProps)
     const notMore = <div className="text-center text-gray-500 my-4">Barchasi yuklandi</div>
-    const loader = <Loader />
 
     return (
         <Fragment>
             {query.isFetching && !query.isLoading && <Loader center />}
 
             <div className={clsx("grid gap-4", { "sm:grid-cols-2 lg:grid-cols-3": responsive }, className)}>
-                <InfiniteList disableObserver query={query} renderItem={render} loader={loader} notMore={notMore} />
+                <InfiniteList disableObserver query={query} renderItem={render} loader={<Loader />} notMore={notMore} />
             </div>
 
             {query.observer}

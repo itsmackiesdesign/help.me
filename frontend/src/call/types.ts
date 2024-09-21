@@ -9,9 +9,10 @@ export type UserType = ModelType & {
     verifiedAt?: string
 }
 
+// TODO: remove
 export type MemberType = ModelType & {
     birthdate: string
-    user: ID | UserType
+    user: UserType
     address: string
     extra: string
 }

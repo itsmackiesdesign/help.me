@@ -1,50 +1,68 @@
 import Layout from "@core/components/Layout.tsx"
 import InfiniteCards from "@core/components/InfinityCards.tsx"
 import { useInfiniteFetch } from "@core/hooks/request.ts"
-import Button from "@core/components/Button.tsx"
-import Group from "@core/components/Group.tsx"
-import Heading from "@core/components/Heading"
+import MemberCard from "@members/components/MemberItem.tsx"
+import { MemberType } from "@members/types.ts"
 
 const staticData = [
-    { id: 1, name: "John Doe", value: "100" },
-    { id: 2, name: "Jane Smith", value: "200" },
-    { id: 3, name: "Alice Johnson", value: "150" },
+    {
+        user: { id: 1, phone: "+", verifiedAt: "", firstName: "John", lastName: "Doe" },
+        birthdate: "1990-01-01",
+        address: "123 Main St",
+        extra: "Extra info",
+        id: 1,
+    },
+    {
+        user: { id: 1, phone: "+", verifiedAt: "", firstName: "Jane", lastName: "Smith" },
+        birthdate: "1995-02-01",
+        address: "456 Main St",
+        extra: "Extra info",
+        id: 2,
+    },
+    {
+        user: { id: 1, phone: "+", verifiedAt: "", firstName: "Alice", lastName: "Johnson" },
+        birthdate: "2000-03-01",
+        address: "789 Main St",
+        extra: "Extra info",
+        id: 3,
+    },
 ]
 
-const fetchStaticData = async ({ pageParam = 1 }) => {
-    const pageSize = 50
+const fetchStaticData = async function ({ pageParam = 1 }) {
+    const pageSize = 20
     const totalCount = staticData.length
     const data = staticData.slice((pageParam - 1) * pageSize, pageParam * pageSize)
     return { results: data, count: totalCount }
 }
 
 export default function Members() {
-    const query = useInfiniteFetch("staticData", fetchStaticData)
+    const query = useInfiniteFetch(["members"], fetchStaticData)
 
-    const renderItem = (item: (typeof staticData)[0]) => {
+    const renderItem = (item: MemberType) => {
         return (
-            <div key={item.id} className="p-4 border rounded shadow-md">
-                <Heading className="text-lg font-bold">{item.name}</Heading>
-                <Heading className="text-gray-500">{item.value}</Heading>
-                <Group className="justify-end">
-                    <Button size="sm">View</Button>
-                </Group>
-            </div>
+            <MemberCard
+                member={{
+                    user: item.user,
+                    birthdate: item.birthdate,
+                    address: item.address,
+                    extra: item.extra,
+                    id: 1,
+                }}
+            />
         )
-    }
-
-    const cardProps = {
-        title: (item: (typeof staticData)[0]) => item.name,
-        content: (item: (typeof staticData)[0]) => `Value: ${item.value}`,
     }
 
     return (
         <Layout>
             <h1 className="text-2xl font-bold my-4">Clients</h1>
+
             <InfiniteCards
                 responsive
                 query={query}
-                cardProps={cardProps}
+                cardProps={{
+                    title: (item) => item.user.firstName,
+                    content: (item) => item.user.lastName,
+                }}
                 renderItem={renderItem}
                 className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
             />

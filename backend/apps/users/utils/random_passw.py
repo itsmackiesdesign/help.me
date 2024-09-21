@@ -24,3 +24,4 @@ def make_random_password(length=12, use_digits=True, use_uppercase=True, use_pun
 
     random.shuffle(password)
     return "".join(password)
+

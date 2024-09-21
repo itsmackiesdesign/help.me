@@ -8,16 +8,16 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api-auth/", include("rest_framework.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
-    path("", RedirectView.as_view(url="/api/v1/toolkit/")),
-    path(
-        "api/v1/",
-        include(
-            [
-                path("calls/", include(("calls.urls", "calls"), namespace="calls")),
-                path("users/", include(("users.urls", "users"), namespace="users")),
-            ]
-        ),
-    ),
+    path('', RedirectView.as_view(url='/api/v1/toolkit/')),
+    path('api/v1/', include([
+        path('toolkit/', include('toolkit.urls')),
+        path('users/', include('users.urls')),
+        path('members/', include('members.urls')),
+        path("calls/", include(("calls.urls", "calls"), namespace="calls")),
+        path('core/', include('core.urls')),
+
+    ])),
+
 ]
 
 if settings.DEBUG:

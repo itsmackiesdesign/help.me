@@ -40,4 +40,5 @@ class SignInView(GenericAPIView):
 
     def post(self, request):
         data = self.serializer_class.check(request)
-        return sign_in_response(data["user"])
+        return sign_in_response(data['user'])
+

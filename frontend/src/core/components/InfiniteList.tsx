@@ -1,11 +1,11 @@
 import Loader from "@core/components/Loader.tsx"
-import { Fragment, ReactNode } from "react"
+import { Fragment, JSX, ReactNode } from "react"
 import { ModelType } from "@core/types.ts"
 import { useInfiniteFetch } from "@core/hooks/request.ts"
 
 export type Props<Item extends ModelType> = {
     query: ReturnType<typeof useInfiniteFetch<Item>>
-    renderItem: (item: Item, index: number) => ReactNode
+    renderItem: (item: Item, index: number) => JSX.Element
     notMore?: ReactNode
     loader?: ReactNode
     disableObserver?: boolean
