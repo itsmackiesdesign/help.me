@@ -10,6 +10,7 @@ import { CallType } from "@call/types"
 export default function Call() {
     const navigate = useNavigate()
     const query = useCallList()
+    
 
     const handleCardClick = (id: number) => {
         navigate(`/calls/call/${id}`)

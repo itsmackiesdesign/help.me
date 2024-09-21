@@ -46,3 +46,9 @@ export type ContactType = ModelType & {
     relationship: ContactRelationshipType
     member: ID | MemberType
 }
+
+export type StreamDataType = {
+    callId: string
+    token: string
+    userId: string
+}

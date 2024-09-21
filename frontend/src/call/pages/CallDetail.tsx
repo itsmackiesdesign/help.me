@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom"
 import Layout from "@core/components/Layout"
-import { PhoneIcon } from '@heroicons/react/24/solid'
+import { PhoneIcon } from "@heroicons/react/24/solid"
 import Group from "@core/components/Group"
-import { IdentificationIcon, UserIcon, CakeIcon, MapIcon, CheckCircleIcon } from '@heroicons/react/24/solid'
+import { IdentificationIcon, CakeIcon, MapIcon, CheckCircleIcon } from "@heroicons/react/24/solid"
 import Timeline from "@core/components/Timeline"
 import { useFetch } from "@core/hooks/request"
 import { CallType } from "@call/types"
@@ -33,7 +33,8 @@ export default function CallDetail() {
                         style={{ border: "0" }}
                         allowFullScreen
                         referrerPolicy="no-referrer-when-downgrade"
-                        loading="lazy" />
+                        loading="lazy"
+                    />
                 </div>
             </div>
 
@@ -70,12 +71,13 @@ export default function CallDetail() {
                         </div>
 
                         <div className="flex items-center">
-                            <CheckCircleIcon
-                                className={`w-5 h-5 mr-2 text-green-600`}
-                            />
+                            <CheckCircleIcon className={"w-5 h-5 mr-2 text-green-600"} />
 
                             <p className="text-gray-700">
-                                <strong>Verified:</strong> <span className="text-green-600">Verified on {formatDate(call.data?.member.birthdate as string)}</span>
+                                <strong>Verified:</strong>{" "}
+                                <span className="text-green-600">
+                                    Verified on {formatDate(call.data?.member.birthdate as string)}
+                                </span>
                             </p>
                         </div>
 

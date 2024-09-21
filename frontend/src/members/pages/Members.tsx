@@ -6,6 +6,7 @@ import { useMemberList } from "@members/hooks/members.ts"
 
 export default function Members() {
     const members = useMemberList()
+    console.log(members.data)
 
     const renderItem = (item: MemberType) => {
         return (

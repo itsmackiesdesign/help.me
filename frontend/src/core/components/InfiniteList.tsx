@@ -24,7 +24,7 @@ export default function InfiniteList<Item extends ModelType>({
     return (
         <Fragment>
             {query.data?.pages.map((page) =>
-                page.results.map((item, index) => <Fragment key={item.id}>{renderItem(item, index)}</Fragment>)
+                page.results?.map((item, index) => <Fragment key={item.id}>{renderItem(item, index)}</Fragment>)
             )}
 
             {!disableObserver && query.isError && query.observer}
