@@ -1,0 +1,31 @@
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DEBUG = True
+
+MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+SEND_CONFIRMATION_SMS = False
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': '',
+        'USER': 'postgres',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 5432,
+    }
+}
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = ''
+SERVER_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = ""
+
+ALLOWED_HOSTS = ['*']
+CORS_ORIGIN_WHITELIST = ('http://localhost:3000',)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
