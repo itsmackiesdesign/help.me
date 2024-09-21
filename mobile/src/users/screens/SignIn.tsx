@@ -60,7 +60,7 @@ export default function SignIn({ navigation }: NavigationType) {
                             <InfoText>A verification code will be sent to this number.</InfoText>
                         </InnerBlock>
 
-                        <ButtonBlock behavior={"position"} keyboardVerticalOffset={Platform.OS === "ios" ? 50 : -150}>
+                        <ButtonBlock behavior={"position"} keyboardVerticalOffset={Platform.OS === "ios" ? 100 : -150}>
                             <Button
                                 onPress={methods.handleSubmit(handleSubmit)}
                                 background={buttonDisabled || isLoading ? theme.secondary : theme.primary}

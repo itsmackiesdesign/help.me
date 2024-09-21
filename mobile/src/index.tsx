@@ -9,6 +9,9 @@ import SplashScreen from "@core/screens/SplashScreen.tsx"
 import SignIn from "@users/screens/SignIn.tsx"
 import ConfirmCode from "@users/screens/ConfirmCode.tsx"
 import ToastProvider from "@core/components/ToastProvider.tsx"
+import UserInformation from "@users/screens/UserInformation.tsx"
+import MemberInformation from "@users/screens/MemberInformation.tsx"
+import ClosePeople from "@users/screens/ClosePeople.tsx"
 
 const Stack = createStackNavigator<RootStackParamListType>()
 const queryClient = new QueryClient({
@@ -29,6 +32,9 @@ const Router = () => {
                         <Stack.Screen name="SplashScreen" component={SplashScreen} />
                         <Stack.Screen name="SignIn" component={SignIn} />
                         <Stack.Screen name="ConfirmCode" component={ConfirmCode} />
+                        <Stack.Screen name="UserInformation" component={UserInformation} />
+                        <Stack.Screen name="MemberInformation" component={MemberInformation} />
+                        <Stack.Screen name="ClosePeople" component={ClosePeople} />
                         <Stack.Screen name="Call" component={Call} />
                     </Stack.Navigator>
                 </NavigationContainer>

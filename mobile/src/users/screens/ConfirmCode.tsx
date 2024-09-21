@@ -6,9 +6,9 @@ import { NavigationType } from "@core/types.ts"
 import { useTheme } from "@emotion/react"
 import { FormProvider, useForm } from "react-hook-form"
 import { CheckInType } from "@users/types.ts"
-import { useState } from "react"
+import { Fragment, useState } from "react"
 import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native"
-import { Container } from "@core/components/molecules"
+import { ButtonText, Container, InputLabel, SafeArea } from "@core/components/molecules"
 
 type Props = {
     route: { params: { phone: string } }
@@ -23,7 +23,7 @@ export default function ConfirmCode({ route, navigation }: Props) {
     const isLoading = false
 
     const handleChangeText = (text: string) => {
-        setButtonDisabled(text.length !== 6)
+        setButtonDisabled(text.length !== 5)
     }
 
     const handleSubmit = async (data: CheckInType) => {
@@ -33,62 +33,59 @@ export default function ConfirmCode({ route, navigation }: Props) {
         // const response = await mutateAsync(data)
         // storage.set("token", response.token)
         // storage.set("phone", response.user.phone)
-        navigation.navigate("Call")
+        navigation.navigate("UserInformation")
     }
 
     return (
-        <Container style={{ position: "relative" }}>
+        <Container>
             <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
                 <SafeArea>
                     <Header title="Confirm code" />
+                    <HeadingText>We’ve sent a 5-digit verification code to your phone number.</HeadingText>
 
-                    <HeadingText>We’ve sent a 6-digit verification code to your phone number.</HeadingText>
-
-                    <InnerBlock>
-                        <FormProvider {...methods}>
+                    <FormProvider {...methods}>
+                        <InnerBlock>
                             <InputBox>
                                 <PhoneText>{phone}</PhoneText>
                             </InputBox>
 
                             <TouchableWithoutFeedback>
-                                <InputBox>
-                                    <FormInput
-                                        name="code"
-                                        defaultValue=""
-                                        onChangeText={handleChangeText}
-                                        keyboardType="phone-pad"
-                                        maxLength={6}
-                                        placeholder="******"
-                                        placeholderTextColor={theme.lightGray}
-                                        style={[inputStyle, { color: theme.secondary }]}
-                                    />
-                                </InputBox>
-                            </TouchableWithoutFeedback>
-                            <InfoText>A verification code will be sent to this number.</InfoText>
+                                <Fragment>
+                                    <InputLabel>Code</InputLabel>
 
-                            <ButtonBlock
-                                behavior={"position"}
-                                keyboardVerticalOffset={Platform.OS === "ios" ? 100 : -150}
+                                    <InputBox>
+                                        <FormInput
+                                            name="code"
+                                            defaultValue=""
+                                            onChangeText={handleChangeText}
+                                            keyboardType="phone-pad"
+                                            maxLength={5}
+                                            placeholder="*****"
+                                            placeholderTextColor={theme.lightGray}
+                                            style={[inputStyle, { color: theme.secondary }]}
+                                        />
+                                    </InputBox>
+                                </Fragment>
+                            </TouchableWithoutFeedback>
+
+                            <InfoText>A verification code will be sent to this number.</InfoText>
+                        </InnerBlock>
+
+                        <ButtonBlock behavior={"position"} keyboardVerticalOffset={Platform.OS === "ios" ? 100 : -150}>
+                            <Button
+                                onPress={methods.handleSubmit(handleSubmit)}
+                                background={buttonDisabled || isLoading ? theme.secondary : theme.primary}
+                                disabled={buttonDisabled || isLoading}
                             >
-                                <Button
-                                    onPress={methods.handleSubmit(handleSubmit)}
-                                    background={buttonDisabled || isLoading ? theme.secondary : theme.primary}
-                                    disabled={buttonDisabled || isLoading}
-                                >
-                                    <SubmitText>Submit</SubmitText>
-                                </Button>
-                            </ButtonBlock>
-                        </FormProvider>
-                    </InnerBlock>
+                                <ButtonText style={{ color: theme["base-100"] }}>Submit</ButtonText>
+                            </Button>
+                        </ButtonBlock>
+                    </FormProvider>
                 </SafeArea>
             </TouchableWithoutFeedback>
         </Container>
     )
 }
-
-const SafeArea = styled.SafeAreaView`
-    flex: 1;
-`
 
 const InputBox = styled.View`
     width: 100%;
@@ -117,7 +114,6 @@ const PhoneText = styled.Text`
 const InnerBlock = styled.View`
     flex: 1;
     padding: 10px 5px;
-    gap: 10px;
 `
 
 const HeadingText = styled.Text`
@@ -132,13 +128,6 @@ const InfoText = styled.Text`
     font-weight: 400;
     text-align: center;
     color: ${(props) => props.theme.secondary};
-`
-
-const SubmitText = styled.Text`
-    font-size: 16px;
-    font-weight: 500;
-    margin: 12px;
-    color: ${(props) => props.theme["base-100"]};
 `
 
 const ButtonBlock = styled.KeyboardAvoidingView`

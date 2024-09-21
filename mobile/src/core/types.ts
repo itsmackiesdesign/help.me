@@ -5,6 +5,9 @@ export type RootStackParamListType = {
     SplashScreen: undefined
     SignIn: undefined
     ConfirmCode: { phone: string }
+    UserInformation: undefined
+    MemberInformation: undefined
+    ClosePeople: undefined
     Call: undefined
 }
 
@@ -19,10 +22,6 @@ export type Pagination<T> = {
     results: T[]
 }
 
-export type ModelType = {
-    id: number
-}
-
-export type StylesPropsType = {
-    theme: Theme
-}
+export type ID = number
+export type ModelType = { id: ID }
+export type StylesPropsType = { theme: Theme }

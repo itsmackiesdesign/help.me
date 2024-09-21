@@ -34,4 +34,15 @@ const SafeArea = styled.SafeAreaView`
     flex: 1;
 `
 
-export { Container, ButtonTouchable, ButtonPressable, ButtonText, SafeArea }
+const Scroll = styled.ScrollView`
+    flex: 1;
+`
+
+const InputLabel = styled.Text`
+    font-size: 16px;
+    margin-top: 15px;
+    font-weight: 500;
+    color: ${(props) => props.theme.neutral};
+`
+
+export { Container, ButtonTouchable, ButtonPressable, ButtonText, SafeArea, Scroll, InputLabel }
