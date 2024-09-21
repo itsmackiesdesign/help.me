@@ -164,11 +164,16 @@ AWS_LOCATION = os.environ.get('AWS_LOCATION', '')
 AWS_DEFAULT_ACL = 'private'
 AWS_S3_SIGNATURE_VERSION = 's3v4'
 
+# Get stream Settings
+STREAM_API_KEY = os.environ.get('STREAM_API_KEY')
+STREAM_API_SECRET = os.environ.get('STREAM_API_SECRET')
+
 # Toolbar settings
 INTERNAL_IPS = ("127.0.0.1",)
 
 # CUSTOM SETTINGS
 FRONTEND_DOMAIN = os.environ.get('FRONTEND_DOMAIN', 'http://localhost:3000')
+SEND_CONFIRMATION_SMS = os.environ.get('SEND_CONFIRMATION_SMS')
 CORS_ORIGIN_WHITELIST = (FRONTEND_DOMAIN,)
 CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SAMESITE = 'strict'
@@ -176,7 +181,6 @@ SESSION_COOKIE_SAMESITE = 'strict'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
 ]
-
 
 DEFAULT_FIXTURES = [
     # when you run `manage.py fixtures` fixtures below will be loaded.

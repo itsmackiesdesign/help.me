@@ -16,9 +16,8 @@ export type Props = {
 
 export default function Navbar({ title, start, middle, end, backTo, className }: Props) {
     return (
-        <div className={clsx("w-full z-50 bg-white shadow-md sticky top-0", className)}>
+        <div className={clsx("w-full bg-white shadow-md", className)}>
             <Container className="navbar h-16 flex items-center justify-between">
-                {/* Navbar Start */}
                 <div className="flex items-center space-x-4">
                     {backTo ? (
                         <Button
@@ -37,13 +36,9 @@ export default function Navbar({ title, start, middle, end, backTo, className }:
                     )}
                 </div>
 
-                {/* Navbar Middle */}
                 <div className="navbar-center hidden md:flex justify-center">{middle}</div>
-
-                {/* Navbar End */}
                 <div className="flex items-center space-x-4">{end}</div>
             </Container>
-            {/* Bottom accent bar */}
             <div className="w-full bg-primary h-1 transition-all" />
         </div>
     )

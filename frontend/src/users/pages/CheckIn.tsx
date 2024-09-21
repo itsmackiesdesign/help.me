@@ -16,14 +16,15 @@ export default function CheckIn() {
     const navigate = useNavigate()
 
     async function onSubmit(data: CheckInFormData) {
+        if (!phone) navigate("/sign-in")
         data = { ...data, phone }
         const response = await checkIn.mutateAsync(data)
         signIn(response)
-        navigate("/dashboard")
+        navigate("/")
     }
 
     if (isAuthenticated()) {
-        return <Navigate to="/dashboard" replace />
+        return <Navigate to="/calls" replace />
     }
 
     return (

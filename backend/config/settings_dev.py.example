@@ -8,6 +8,9 @@ MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
 SEND_CONFIRMATION_SMS = False
 
+STREAM_API_KEY = ''
+STREAM_API_SECRET = ''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

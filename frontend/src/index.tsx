@@ -14,10 +14,9 @@ export default function App() {
                 <BrowserRouter>
                     <ModalProvider>
                         <Routes>
-                            <Route path="/users/*" element={<UserRoutes />} />
-                            <Route path="/*" element={<CallRoutes />} />
+                            <Route path="/*" element={<UserRoutes />} />
+                            <Route path="/calls/*" element={<CallRoutes />} />
                             <Route path="/members/*" element={<MemberRoutes />} />
-                            {/*<Route path="*" element={<NotFound />} />*/}
                         </Routes>
                     </ModalProvider>
                 </BrowserRouter>

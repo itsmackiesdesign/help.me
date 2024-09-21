@@ -18,7 +18,7 @@ export type MemberType = ModelType & {
 }
 
 export type CallType = ModelType & {
-    member: ID
+    member: ID | MemberType
     status: "initialized" | "called" | "canceled" | "ambulance_requested" | "finished"
     initiatedAt: string
     longitude: number

@@ -1,7 +1,6 @@
 import { ModelType } from "@core/types.ts"
 
 export type SignInFormData = {
-    type: "Admin"
     phone: string
 }
 

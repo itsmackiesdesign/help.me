@@ -10,7 +10,7 @@ import { useSignIn } from "@users/hooks/users.tsx"
 import { isAuthenticated } from "@users/utils/auth.ts"
 
 export default function SignIn() {
-    const { setPhone, setTelegramLink } = useContext(AuthContext)
+    const { setPhone } = useContext(AuthContext)
     const navigate = useNavigate()
     const methods = useForm<SignInFormData>()
     const signIn = useSignIn()
@@ -19,18 +19,15 @@ export default function SignIn() {
     const { ref: formInputRef, ...rest } = methods.register("phone")
 
     async function onSubmit(data: SignInFormData) {
-        const phone = "+998" + data.phone.replace(/\D/g, "")
-        data = { phone, type: "Admin" }
+        const phone = "998" + data.phone.replace(/\D/g, "")
+        data = { phone }
         setPhone(phone)
-
-        const response = await signIn.mutateAsync(data)
-        setTelegramLink(response.message)
-
-        navigate("/users/check-in")
+        await signIn.mutateAsync(data)
+        navigate("/check-in")
     }
 
     if (isAuthenticated()) {
-        return <Navigate to="/" replace />
+        return <Navigate to="/calls" replace />
     }
 
     return (

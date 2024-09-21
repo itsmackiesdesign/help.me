@@ -6,7 +6,7 @@ import Tooltip from "@core/components/Tooltip.tsx"
 import Button from "@core/components/Button.tsx"
 import { ReactNode } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-import { ArrowLeftStartOnRectangleIcon } from "@heroicons/react/24/outline"
+import { ArrowLeftStartOnRectangleIcon, ChartPieIcon, CogIcon } from "@heroicons/react/24/outline"
 import { signOut } from "@users/utils/auth.ts"
 import { useQueryClient } from "react-query"
 import { ChartBarIcon, UsersIcon } from "@heroicons/react/20/solid"
@@ -25,10 +25,6 @@ export default function Layout({ children }: Props) {
                 title="Help me"
                 end={
                     <Group className="items-center">
-                        {/*<Tooltip tip="Settings" position="bottom">*/}
-                        {/*    <Button to="/settings" icon={Cog8ToothIcon} size="sm" color="ghost" circle />*/}
-                        {/*</Tooltip>*/}
-
                         <Tooltip tip="Logout" position="bottom">
                             <Button
                                 onClick={() => signOut(navigate, () => client.invalidateQueries())}
@@ -45,9 +41,9 @@ export default function Layout({ children }: Props) {
             <Drawer
                 className="flex-1"
                 sidebar={
-                    <ul className="menu p-4 w-60 min-h-full border-r border-r-base-200 text-base-content gap-1">
+                    <ul className="menu p-4 w-60 min-h-full border-r border-r-base-200 text-base-content gap-1 ">
                         <li>
-                            <NavLink className="nav-btn" to="/">
+                            <NavLink className="nav-btn" to="/calls">
                                 <Icon icon={ChartBarIcon} className="w-4 h-4" />
                                 <span>Calls</span>
                             </NavLink>
@@ -57,6 +53,23 @@ export default function Layout({ children }: Props) {
                                 <Icon icon={UsersIcon} className="w-4 h-4" />
                                 <span>Members</span>
                             </NavLink>
+                        </li>
+                        <li>
+                            <p aria-disabled={true} className="text-gray-400">
+                                <Icon icon={ChartPieIcon} className="w-4 h-4" />
+                                <span>
+                                    Statistics{" "}
+                                    <span className="badge badge-accent badge-sm text-gray-400">soon...</span>
+                                </span>
+                            </p>
+                        </li>
+                        <li>
+                            <p aria-disabled={true} className="text-gray-400">
+                                <Icon icon={CogIcon} className="w-4 h-4" />
+                                <span>
+                                    Settings <span className="badge badge-accent badge-sm text-gray-400">soon...</span>
+                                </span>
+                            </p>
                         </li>
                     </ul>
                 }

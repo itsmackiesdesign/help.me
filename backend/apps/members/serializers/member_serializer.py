@@ -18,10 +18,12 @@ class MemberSerializer(serializers.ModelSerializer):
         user.last_name = last_name
         user.save()
 
+        validated_data.pop('user', None)
+
         member = Member.objects.create(user=user, **validated_data)
+
         return member
 
     class Meta:
         model = Member
         fields = ['id', 'birthdate', 'address', 'extra', 'user', 'first_name', 'last_name']
-

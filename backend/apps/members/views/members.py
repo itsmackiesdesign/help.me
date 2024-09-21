@@ -1,26 +1,29 @@
-from django.shortcuts import get_object_or_404
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import status
+from rest_framework import generics
 from members.serializers.member_serializer import MemberSerializer
 from members.models import Member
+from toolkit.views import ListMixin
 
 
-class MemberListCreate(APIView):
-    def get(self, request):
-        member = get_object_or_404(Member, user=request.user)
-        serializer = MemberSerializer(member)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class MemberListCreateAPIView(ListMixin, generics.ListCreateAPIView):
+    queryset = Member.objects.all()
+    serializer_class = MemberSerializer
 
-    def post(self, request):
-        serializer = MemberSerializer(data=request.data, context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        serializer.save(created_by=request.user)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+    def get_queryset(self):
+        return Member.objects.all().order_by('id')
 
-    def put(self, request, pk):
-        member = get_object_or_404(Member, pk=pk)
-        serializer = MemberSerializer(member, data=request.data, context={'request': request})
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def perform_create(self, serializer):
+        first_name = self.request.data.get('first_name')
+        last_name = self.request.data.get('last_name')
+        user = self.request.user
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+        serializer.save(user=user, created_by=user)
+
+
+class MemberDetailAPIView(generics.RetrieveUpdateAPIView):
+    queryset = Member.objects.all()
+    serializer_class = MemberSerializer
+
+    def get_queryset(self):
+        return Member.objects.filter(user=self.request.user)

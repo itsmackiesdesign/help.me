@@ -21,6 +21,7 @@ class Call(BaseModel):
     canceled_at = models.DateTimeField(null=True, blank=True)
     ambulance_requested_at = models.DateTimeField(null=True, blank=True)
     finished_at = models.DateTimeField(null=True, blank=True)
+    call_id = models.CharField(null=True, blank=True)
 
     class Meta:
         db_table = "calls"
