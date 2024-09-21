@@ -17,4 +17,4 @@ class SimpleUserSerializer(ModelSerializer):
     # This serializer also was used for generating JWT token.
     class Meta:
         model = User
-        fields = ('id', 'first_name', 'last_name')
+        fields = ('id', 'phone', 'first_name', 'last_name')

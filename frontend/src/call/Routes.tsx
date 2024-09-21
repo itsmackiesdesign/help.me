@@ -8,8 +8,8 @@ export default function CallRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Call />} />
-            <Route path="*" element={<NotFound />} />
             <Route path="/call/:id" element={<CallDetail />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
     )
 }

@@ -1,11 +1,10 @@
 import { ID, ModelType } from "@core/types.ts"
 
 export type UserType = ModelType & {
+    phone: string
     username: string
     firstName: string
     lastName: string
-    fullName?: string
-    phone: string
     verifiedAt?: string
 }
 
@@ -18,7 +17,7 @@ export type MemberType = ModelType & {
 }
 
 export type CallType = ModelType & {
-    member: ID | MemberType
+    member: MemberType
     status: "initialized" | "called" | "canceled" | "ambulance_requested" | "finished"
     initiatedAt: string
     longitude: number

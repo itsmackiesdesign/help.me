@@ -14,14 +14,22 @@ api_description = """
 """
 
 urlpatterns = [
-    path('openapi', get_schema_view(
-        title="Azbo API",
-        description=api_description,
-        permission_classes=(AllowAny,),
-        version="1.0.0"
-    ), name='openapi'),
-    path('', TemplateView.as_view(
-        template_name='swagger.html',
-        extra_context={'schema_url': 'toolkit:openapi'}
-    ), name='swagger'),
+    path(
+        "openapi",
+        get_schema_view(
+            title="HelpMe API",
+            description=api_description,
+            permission_classes=(AllowAny,),
+            version="1.0.0",
+        ),
+        name="openapi",
+    ),
+    path(
+        "",
+        TemplateView.as_view(
+            template_name="swagger.html",
+            extra_context={"schema_url": "toolkit:openapi"},
+        ),
+        name="swagger",
+    ),
 ]
