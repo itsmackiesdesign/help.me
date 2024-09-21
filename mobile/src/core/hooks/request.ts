@@ -1,5 +1,4 @@
 import { useCallback } from "react"
-import { signOut } from "../../users/utils/auth.ts"
 import { AxiosError } from "axios"
 import { UseMutationOptions } from "react-query/types/react/types"
 import { ModelType, Pagination, StackNavigationType } from "@core/types"
@@ -15,9 +14,11 @@ import {
     UseQueryOptions,
 } from "react-query"
 import { useNavigation } from "@react-navigation/native"
+import { showToast } from "@core/utils/toast.ts"
+import { errorReader } from "@core/utils/errorReader.tsx"
 
 type ServerErrorType = Record<string, string>
-type BaseError = AxiosError<ServerErrorType>
+export type BaseError = AxiosError<ServerErrorType>
 
 function useErrorHandler(onError?: (err: BaseError) => void) {
     const navigation = useNavigation<StackNavigationType>()
@@ -25,16 +26,17 @@ function useErrorHandler(onError?: (err: BaseError) => void) {
 
     return (error: BaseError) => {
         onError?.(error)
+        showToast({ type: "error", title: errorReader(error) })
 
-        if (error.response === undefined || error.response.status === 0) {
-            console.log("Проверьте интернет соединение", "is-danger")
-        } else if (error.response.status >= 500) {
-            console.log("Ошибка сервера.", "is-danger")
-        } else if (error.response.status === 401) {
-            signOut()
-            navigation.navigate("Home")
-            // client.invalidateQueries()
-        }
+        // if (error.response === undefined || error.response.status === 0) {
+        //     console.log("Проверьте интернет соединение", "is-danger")
+        // } else if (error.response.status >= 500) {
+        //     console.log("Ошибка сервера.", "is-danger")
+        // } else if (error.response.status === 401) {
+        //     signOut()
+        //     navigation.navigate("Home")
+        //     // client.invalidateQueries()
+        // }
     }
 }
 

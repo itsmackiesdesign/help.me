@@ -1,13 +1,13 @@
-import Button from "@core/components/molecules/Button.tsx"
+import Header from "@core/components/atoms/Header.tsx"
 import { NavigationType } from "@core/types.ts"
-import { Container } from "@core/components/molecules"
+import { Container, SafeArea } from "@core/components/molecules"
 
-const Call = ({ navigation }: NavigationType) => {
+export default function Call({ navigation }: NavigationType) {
     return (
         <Container>
-            <Button text="Toggle theme" />
+            <SafeArea>
+                <Header title="Call" showBackButton={false} />
+            </SafeArea>
         </Container>
     )
 }
-
-export default Call

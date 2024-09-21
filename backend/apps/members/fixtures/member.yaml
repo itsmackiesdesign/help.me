@@ -1,0 +1,13 @@
+- model: "members.Member"
+  pk: 1
+  fields:
+    birthdate: 2001-09-21
+    user_id: 1
+    created_by_id: 1
+
+- model: "members.Member"
+  pk: 2
+  fields:
+    birthdate: 2000-03-12
+    user_id: 2
+    created_by_id: 2

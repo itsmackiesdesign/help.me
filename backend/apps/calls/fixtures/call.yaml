@@ -1,0 +1,21 @@
+- model: "calls.Call"
+  pk: 1
+  fields:
+    member: 1
+    status: initiated
+    initiated_at: "2024-09-21 08:33:47.458122 +00:00"
+    longitude: -74.0060
+    latitude: 40.7128
+    created_by_id: 1
+
+
+- model: "calls.Call"
+  pk: 2
+  fields:
+    member: 2
+    status: called
+    initiated_at: "2024-09-21 08:33:47.458122 +00:00"
+    called_at: "2024-08-21 08:33:47.458122 +00:00"
+    latitude: 51.5074
+    longitude: -0.1278
+    created_by_id: 1

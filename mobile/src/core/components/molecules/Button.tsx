@@ -1,15 +1,46 @@
-import { ButtonText, ButtonTouchable } from "@core/components/molecules/index.ts"
+import AnimatedButton from "@core/components/molecules/AnimatedButton.tsx"
+import { ReactNode } from "react"
+import { PressableProps } from "react-native"
+import { css } from "@emotion/native"
+import { ButtonPressable } from "@core/components/molecules/index.ts"
 
-interface ButtonI {
-    text: string
-    onPress?: () => void
-}
+type ButtonProps = {
+    animated?: boolean
+    background?: string
+    borderRadius?: number
+    disabled?: boolean
+    children: ReactNode
+} & PressableProps
 
-const Button = ({ text, onPress }: ButtonI) => {
+const Button = ({
+    animated = true,
+    background,
+    borderRadius = 8,
+    disabled = false,
+    children,
+    ...rest
+}: ButtonProps) => {
+    const backgroundStyle = css`
+        background-color: ${background};
+    `
+
+    if (animated && !disabled) {
+        return (
+            <AnimatedButton
+                ButtonComponent={ButtonPressable}
+                {...rest}
+                style={[backgroundStyle, { borderRadius }]}
+                disabled={disabled}
+            >
+                {children}
+            </AnimatedButton>
+        )
+    }
+
     return (
-        <ButtonTouchable onPress={onPress}>
-            <ButtonText>{text}</ButtonText>
-        </ButtonTouchable>
+        <ButtonPressable {...rest} style={[backgroundStyle, { borderRadius }]} disabled={disabled}>
+            {children}
+        </ButtonPressable>
     )
 }
 

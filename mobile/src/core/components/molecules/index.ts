@@ -3,9 +3,7 @@ import styled, { css } from "@emotion/native"
 const Container = styled.View`
     flex: 1;
     padding: 10px;
-    justify-content: center;
-    align-items: center;
-    background-color: ${(props) => props.theme.background};
+    background-color: ${(props) => props.theme["base-100"]};
 `
 
 const buttonCss = css`
@@ -29,7 +27,11 @@ const ButtonPressable = styled.Pressable`
 const ButtonText = styled.Text`
     font-size: 16px;
     text-align: center;
-    color: ${(props) => props.theme.text};
+    color: ${(props) => props.theme.neutral};
 `
 
-export { Container, ButtonTouchable, ButtonPressable, ButtonText }
+const SafeArea = styled.SafeAreaView`
+    flex: 1;
+`
+
+export { Container, ButtonTouchable, ButtonPressable, ButtonText, SafeArea }

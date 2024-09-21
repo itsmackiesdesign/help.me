@@ -1,6 +1,10 @@
 import { StackNavigationProp } from "@react-navigation/stack"
+import { Theme } from "@emotion/react"
 
 export type RootStackParamListType = {
+    SplashScreen: undefined
+    SignIn: undefined
+    ConfirmCode: { phone: string }
     Call: undefined
 }
 
@@ -17,4 +21,8 @@ export type Pagination<T> = {
 
 export type ModelType = {
     id: number
+}
+
+export type StylesPropsType = {
+    theme: Theme
 }

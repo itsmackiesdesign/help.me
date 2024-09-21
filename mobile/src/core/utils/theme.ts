@@ -11,6 +11,7 @@ const lightColors: Theme = {
     success: "#388E3C",
     warning: "#FBC02D",
     error: "#D32F2F",
+    lightGray: "#9aa0a3",
 }
 
 const darkColors: Theme = {
@@ -23,6 +24,7 @@ const darkColors: Theme = {
     success: "#388E3C",
     warning: "#FBC02D",
     error: "#D32F2F",
+    lightGray: "#9aa0a3",
 }
 
 export const getTheme = storage.getString("theme") === "dark" ? darkColors : lightColors

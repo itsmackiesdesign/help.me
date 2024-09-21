@@ -19,9 +19,8 @@ module.exports = {
                 root: ["."],
                 alias: {
                     "@core": "./src/core",
-                    "@home": "./src/home",
-                    "@user": "./src/user",
-                    "@category": "./src/category",
+                    "@users": "./src/users",
+                    "@call": "./src/call",
                 },
             },
         ],
