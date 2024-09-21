@@ -25,3 +25,4 @@ export type Pagination<T> = {
 export type ID = number
 export type ModelType = { id: ID }
 export type StylesPropsType = { theme: Theme }
+export type MessageType = { detail: string }

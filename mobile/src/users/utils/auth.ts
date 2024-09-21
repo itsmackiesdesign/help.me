@@ -1,19 +1,21 @@
 import { storage } from "@core/utils/storage.ts"
 
-async function auth() {
-    const token = storage.getString("token")
+export function auth() {
     return {
         headers: {
-            Authorization: `Token ${token}`,
+            Authorization: `Token ${storage.getString("token")}`,
         },
     }
 }
 
 export function checkAuth() {
-    const token = storage.getString("token")
-    return Boolean(token)
+    return Boolean(storage.getString("token"))
 }
 
-export async function signOut() {
+export function signOut() {
     storage.set("token", "")
+}
+
+export function signIn(token: string) {
+    storage.set("token", token)
 }

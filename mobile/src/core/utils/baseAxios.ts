@@ -1,8 +1,9 @@
 import axios, { AxiosRequestConfig } from "axios"
 import humps from "humps"
-import { auth } from "../../users/utils/auth.ts"
+import { API_URL } from "@env"
+import { auth } from "@users/utils/auth"
 
-export const domain = "https://api.bakha-aka.uz"
+export const domain = "https://ea7b-84-54-84-86.ngrok-free.app"
 
 const baseAxios = axios.create({
     baseURL: `${domain}/api/v1/`,
@@ -32,7 +33,7 @@ baseAxios.interceptors.request.use((config) => ({
 export default baseAxios
 
 export async function request(options: AxiosRequestConfig, isPublic = false) {
-    const authorization = await auth()
+    const authorization = auth()
     options = isPublic ? options : { ...options, ...authorization }
     const { data } = await baseAxios(options)
     return data

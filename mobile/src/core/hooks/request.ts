@@ -2,7 +2,7 @@ import { useCallback } from "react"
 import { AxiosError } from "axios"
 import { UseMutationOptions } from "react-query/types/react/types"
 import { ModelType, Pagination, StackNavigationType } from "@core/types"
-import { addToList, deleteFromList, updateList, updateObject } from "../utils/state"
+import { addToList, deleteFromList, updateList, updateObject } from "@core/utils/state"
 import {
     MutationFunction,
     QueryFunction,
@@ -16,27 +16,31 @@ import {
 import { useNavigation } from "@react-navigation/native"
 import { showToast } from "@core/utils/toast.ts"
 import { errorReader } from "@core/utils/errorReader.tsx"
+import { signOut } from "@users/utils/auth.ts"
 
 type ServerErrorType = Record<string, string>
 export type BaseError = AxiosError<ServerErrorType>
 
 function useErrorHandler(onError?: (err: BaseError) => void) {
     const navigation = useNavigation<StackNavigationType>()
-    // const client = useQueryClient()
+    const client = useQueryClient()
 
     return (error: BaseError) => {
         onError?.(error)
         showToast({ type: "error", title: errorReader(error) })
 
-        // if (error.response === undefined || error.response.status === 0) {
-        //     console.log("Проверьте интернет соединение", "is-danger")
-        // } else if (error.response.status >= 500) {
-        //     console.log("Ошибка сервера.", "is-danger")
-        // } else if (error.response.status === 401) {
-        //     signOut()
-        //     navigation.navigate("Home")
-        //     // client.invalidateQueries()
-        // }
+        if (error.response === undefined || error.response.status === 0) {
+            showToast({ type: "error", title: "Please check internet connection" })
+        } else if (error.response.status >= 500) {
+            showToast({ type: "error", title: "Server error" })
+        } else if (error.response.status === 401) {
+            showToast({ type: "error", title: "Sign in again" })
+            signOut()
+            navigation.navigate("SignIn")
+            client.invalidateQueries()
+        } else if (error.response.status === 400) {
+            showToast({ type: "error", title: errorReader(error) })
+        }
     }
 }
 
@@ -65,7 +69,6 @@ export function useFetchList<Data extends ModelType>(
         (item: Data) => {
             client.setQueryData<Pagination<Data> | undefined>(queryKey, addToList(item))
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         [queryKey]
     )
 
@@ -73,7 +76,6 @@ export function useFetchList<Data extends ModelType>(
         (item: Data) => {
             client.setQueryData<Pagination<Data> | undefined>(queryKey, updateList(item))
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         [queryKey]
     )
 
@@ -81,7 +83,6 @@ export function useFetchList<Data extends ModelType>(
         (id: number) => {
             client.setQueryData<Pagination<Data> | undefined>(queryKey, deleteFromList(id))
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         [queryKey]
     )
 
@@ -100,7 +101,6 @@ export function useFetchOne<Data>(
         (item: Partial<Data>) => {
             client.setQueryData<Partial<Data> | undefined>(queryKey, updateObject(item))
         },
-        // eslint-disable-next-line react-hooks/exhaustive-deps
         [queryKey]
     )
 
@@ -121,54 +121,3 @@ export function useIsUpdating() {
 
     return isFetching && !isLoading
 }
-
-// export function useInfiniteFetch<Data extends ModelType>(
-//     queryKey: QueryKey,
-//     queryFn: QueryFunction<Pagination<Data>>,
-//     options?: Omit<UseInfiniteQueryOptions<Pagination<Data>, BaseError>, "queryKey" | "queryFn">,
-//     pageSize = 50
-// ) {
-//     const client = useQueryClient()
-//     const onError = useErrorHandler(options?.onError)
-//
-//     const result = useInfiniteQuery(queryKey, queryFn, {
-//         getNextPageParam: (last, pages) => {
-//             const maxPages = Math.ceil(last.count / pageSize)
-//             const nextPage = pages.length + 1
-//             return nextPage <= maxPages ? nextPage : undefined
-//         },
-//         ...options,
-//         onError,
-//     })
-//
-//     const observer = useIntersectionObserver({
-//         onIntersect: result.fetchNextPage,
-//         enabled: result.hasNextPage && !result.isFetchingNextPage,
-//     })
-//
-//     const addItem = useCallback(
-//         (item: Data) => {
-//             client.setQueryData<InfiniteData<Pagination<Data>> | undefined>(queryKey, addToInfinite(item))
-//         },
-//         // eslint-disable-next-line react-hooks/exhaustive-deps
-//         [queryKey]
-//     )
-//
-//     const updateItem = useCallback(
-//         (item: Data) => {
-//             client.setQueryData<InfiniteData<Pagination<Data>> | undefined>(queryKey, updateInfinite(item))
-//         },
-//         // eslint-disable-next-line react-hooks/exhaustive-deps
-//         [queryKey]
-//     )
-//
-//     const deleteItem = useCallback(
-//         (id: number) => {
-//             client.setQueryData<InfiniteData<Pagination<Data>> | undefined>(queryKey, deleteFromInfinite(id))
-//         },
-//         // eslint-disable-next-line react-hooks/exhaustive-deps
-//         [queryKey]
-//     )
-//
-//     return { observer, addItem, updateItem, deleteItem, ...result }
-// }

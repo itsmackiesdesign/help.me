@@ -2,11 +2,11 @@ import { Theme } from "@emotion/react"
 import { storage } from "@core/utils/storage.ts"
 
 const lightColors: Theme = {
-    primary: "#D32F2F",
-    secondary: "#37474F",
-    accent: "#FFCDD2",
+    primary: "#f65275",
+    secondary: "#FFFFFF",
+    accent: "#ffc658",
     neutral: "#212121",
-    "base-100": "#FFFFFF",
+    "base-100": "#11111f",
     info: "#0288D1",
     success: "#388E3C",
     warning: "#FBC02D",
@@ -15,11 +15,11 @@ const lightColors: Theme = {
 }
 
 const darkColors: Theme = {
-    primary: "#D32F2F",
-    secondary: "#37474F",
-    accent: "#FFCDD2",
+    primary: "#f65275",
+    secondary: "#FFFFFF",
+    accent: "#ffc658",
     neutral: "#212121",
-    "base-100": "#FFFFFF",
+    "base-100": "#11111f",
     info: "#0288D1",
     success: "#388E3C",
     warning: "#FBC02D",

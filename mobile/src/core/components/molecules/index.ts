@@ -25,9 +25,10 @@ const ButtonPressable = styled.Pressable`
 `
 
 const ButtonText = styled.Text`
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
-    color: ${(props) => props.theme.neutral};
+    font-weight: 500;
+    color: ${(props) => props.theme.secondary};
 `
 
 const SafeArea = styled.SafeAreaView`
@@ -42,7 +43,25 @@ const InputLabel = styled.Text`
     font-size: 16px;
     margin-top: 15px;
     font-weight: 500;
-    color: ${(props) => props.theme.neutral};
+    color: ${(props) => props.theme.secondary};
 `
 
-export { Container, ButtonTouchable, ButtonPressable, ButtonText, SafeArea, Scroll, InputLabel }
+const InputBox = styled.View`
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid ${(props) => props.theme.secondary};
+    padding: 5px 10px;
+    margin-top: 5px;
+    gap: 5px;
+    align-items: center;
+    flex-direction: row;
+`
+
+const inputStyle = css`
+    flex: 1;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 8px 0;
+`
+
+export { Container, ButtonTouchable, ButtonPressable, ButtonText, SafeArea, Scroll, InputLabel, InputBox, inputStyle }

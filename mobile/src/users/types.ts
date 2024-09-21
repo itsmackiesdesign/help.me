@@ -12,7 +12,14 @@ export type CheckInType = {
 export type UserType = ModelType & {
     firstName: string
     lastName: string
-    phone: string
+}
+
+export type UserUpdateType = Omit<UserType, "id">
+
+export type CheckInResponseType = {
+    token: string
+    refresh: string
+    user: Omit<UserType, "phone">
 }
 
 export type MemberType = ModelType & {
@@ -20,6 +27,11 @@ export type MemberType = ModelType & {
     user: UserType
     address: string
     extra: string
+}
+
+export type MemberCreateType = Omit<MemberType, "id" | "user"> & {
+    firstName: string
+    lastName: string
 }
 
 export type CallType = ModelType & {
@@ -50,12 +62,11 @@ export type ContactType = ModelType & {
     fullName: string
     phone: string
     relationship: ContactRelationshipType
-    member: ID | MemberType
+    member: ID
 }
 
-export type LocationType = ModelType & {
-    name: string
-    location: string
-    latitude: number
-    longitude: number
+export type ContactCreateType = Omit<ContactType, "id" | "member">
+
+export type RefreshTokenType = {
+    token: string
 }

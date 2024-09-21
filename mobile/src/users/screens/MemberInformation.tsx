@@ -3,23 +3,26 @@ import FormInput from "@core/components/molecules/FormInput.tsx"
 import Button from "@core/components/molecules/Button.tsx"
 import DatePicker from "react-native-date-picker"
 import ProgressBar from "@users/components/AuthorizationProgress.tsx"
-import styled, { css } from "@emotion/native"
+import styled from "@emotion/native"
 import { useEffect, useState } from "react"
 import { FormProvider, useForm } from "react-hook-form"
-import { ButtonText, Container, InputLabel, SafeArea, Scroll } from "@core/components/molecules"
+import { ButtonText, Container, InputBox, InputLabel, inputStyle, SafeArea, Scroll } from "@core/components/molecules"
 import { useTheme } from "@emotion/react"
-import { MemberType } from "@users/types.ts"
+import { MemberCreateType } from "@users/types.ts"
 import { NavigationType } from "@core/types.ts"
 import { windowHeight } from "@core/utils/demensions.ts"
+import { useMemberCreate } from "@users/hooks/member.ts"
+import { formatDate } from "@core/utils/date.ts"
+import { storage } from "@core/utils/storage.ts"
 
 export default function MemberInformation({ navigation }: NavigationType) {
     const theme = useTheme()
-    const methods = useForm<MemberType>()
+    const methods = useForm<MemberCreateType>()
     const [buttonDisabled, setButtonDisabled] = useState(true)
     const [birthday, setBirthday] = useState<Date>()
     const [open, setOpen] = useState(false)
 
-    const isLoading = false
+    const { mutateAsync, isLoading } = useMemberCreate()
 
     const [address] = methods.watch(["address"])
 
@@ -27,10 +30,15 @@ export default function MemberInformation({ navigation }: NavigationType) {
         setButtonDisabled(!address || !birthday)
     }, [address, birthday])
 
-    const handleSubmit = async (data: MemberType) => {
+    const handleSubmit = async (data: MemberCreateType) => {
         if (!birthday) return
-        data = { ...data, birthdate: birthday }
-        console.log(data)
+        const date = formatDate(birthday)
+        const firstName = storage.getString("firstName")!
+        const lastName = storage.getString("lastName")!
+        data = { ...data, birthdate: date, firstName, lastName }
+
+        await mutateAsync(data)
+
         navigation.navigate("ClosePeople")
     }
 
@@ -44,7 +52,7 @@ export default function MemberInformation({ navigation }: NavigationType) {
             <SafeArea>
                 <Scroll contentContainerStyle={{ minHeight: windowHeight * 0.9 }}>
                     <FormProvider {...methods}>
-                        <Header title="address" />
+                        <Header title="Health information" />
                         <ProgressBar currentStep={2} />
 
                         <Wrapper>
@@ -110,28 +118,10 @@ export default function MemberInformation({ navigation }: NavigationType) {
     )
 }
 
-const InputBox = styled.View`
-    width: 100%;
-    border-radius: 8px;
-    border: 1px solid ${(props) => props.theme.secondary};
-    padding: 0 10px;
-    margin-top: 5px;
-    gap: 5px;
-    align-items: center;
-    flex-direction: row;
-`
-
 const Wrapper = styled.View`
     width: 100%;
     padding-vertical: 10px;
     margin-bottom: 20px;
-`
-
-const inputStyle = css`
-    flex: 1;
-    font-size: 18px;
-    font-weight: 500;
-    padding: 8px 0;
 `
 
 const DateButton = styled.Text`

@@ -9,6 +9,27 @@ class MemberListCreateAPIView(ListMixin, generics.ListCreateAPIView):
     serializer_class = MemberSerializer
 
     def get_queryset(self):
+        return Member.objects.all()
+
+    def perform_create(self, serializer):
+        first_name = self.request.data.get('first_name')
+        last_name = self.request.data.get('last_name')
+        user = self.request.user
+        user.first_name = first_name
+        user.last_name = last_name
+        user.save()
+        serializer.save(user=user, created_by=user)
+
+
+class MemberListCreate(generics.ListCreateAPIView):
+    queryset = Member.objects.all()
+    serializer_class = MemberSerializer
+    pagination_class = None
+
+    def get_queryset(self):
+        user_only = self.request.query_params.get('user_only', None)
+        if user_only is not None:
+            return Member.objects.filter(user=self.request.user)
         return Member.objects.all().order_by('id')
 
     def perform_create(self, serializer):

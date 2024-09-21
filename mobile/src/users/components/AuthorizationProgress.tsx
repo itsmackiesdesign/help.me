@@ -5,7 +5,7 @@ type Props = {
     currentStep: number
 }
 
-const steps = ["Personal information", "Receiving", "Cleaning"]
+const steps = ["Personal", "Health", "Family"]
 
 export default function ProgressBar({ currentStep }: Props) {
     const theme = useTheme()

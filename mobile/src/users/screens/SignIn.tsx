@@ -1,33 +1,33 @@
 import MaskedFormInput from "@core/components/atoms/MaskedFormInput.tsx"
 import Button from "@core/components/molecules/Button.tsx"
 import Header from "@core/components/atoms/Header.tsx"
-import styled, { css } from "@emotion/native"
+import styled from "@emotion/native"
 import { NavigationType } from "@core/types.ts"
-import { ButtonText, Container, SafeArea } from "@core/components/molecules"
+import { ButtonText, Container, InputBox, inputStyle, SafeArea } from "@core/components/molecules"
 import { FormProvider, useForm } from "react-hook-form"
 import { phoneMask } from "@users/utils/regex.ts"
 import { useTheme } from "@emotion/react"
 import { useState } from "react"
 import { Keyboard, Platform, TouchableWithoutFeedback } from "react-native"
 import { SignInType } from "@users/types.ts"
+import { useSignIn } from "@users/hooks/users.ts"
 
 export default function SignIn({ navigation }: NavigationType) {
     const theme = useTheme()
     const methods = useForm<SignInType>()
     const [buttonDisabled, setButtonDisabled] = useState(true)
-    const isLoading = false
+
+    const { mutateAsync, isLoading } = useSignIn()
 
     const handleChangeText = (text: string) => {
         setButtonDisabled(text.length !== 14)
     }
 
     const handleSubmit = async (data: SignInType) => {
-        data.phone = "+998" + data.phone
-
-        // const response = await mutateAsync(data)
-        // console.log(response.message)
-
+        data.phone = "998" + data.phone
+        await mutateAsync(data)
         navigation.navigate("ConfirmCode", { phone: data.phone })
+        // navigation.navigate("Call")
     }
 
     return (
@@ -40,7 +40,7 @@ export default function SignIn({ navigation }: NavigationType) {
                     <FormProvider {...methods}>
                         <InnerBlock>
                             <TouchableWithoutFeedback>
-                                <Field>
+                                <InputBox>
                                     <PhoneCode>+998</PhoneCode>
 
                                     <MaskedFormInput
@@ -54,13 +54,13 @@ export default function SignIn({ navigation }: NavigationType) {
                                         style={[inputStyle, { color: theme.secondary }]}
                                         mask={phoneMask}
                                     />
-                                </Field>
+                                </InputBox>
                             </TouchableWithoutFeedback>
 
                             <InfoText>A verification code will be sent to this number.</InfoText>
                         </InnerBlock>
 
-                        <ButtonBlock behavior={"position"} keyboardVerticalOffset={Platform.OS === "ios" ? 100 : -150}>
+                        <ButtonBlock behavior={"position"} keyboardVerticalOffset={Platform.OS === "ios" ? 50 : -150}>
                             <Button
                                 onPress={methods.handleSubmit(handleSubmit)}
                                 background={buttonDisabled || isLoading ? theme.secondary : theme.primary}
@@ -98,28 +98,10 @@ const InfoText = styled.Text`
     color: ${(props) => props.theme.secondary};
 `
 
-const Field = styled.View`
-    width: 100%;
-    height: 40px;
-    border-radius: 8px;
-    border: 1px solid ${(props) => props.theme.secondary};
-    padding: 0 10px;
-    margin-top: 5px;
-    gap: 5px;
-    align-items: center;
-    flex-direction: row;
-`
-
 const PhoneCode = styled.Text`
     font-size: 18px;
     margin-top: 1px;
     color: ${(props) => props.theme.secondary};
-`
-
-const inputStyle = css`
-    flex: 1;
-    font-size: 18px;
-    padding: 8px 0;
 `
 
 const ButtonBlock = styled.KeyboardAvoidingView`
