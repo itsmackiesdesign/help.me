@@ -4,7 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom"
 import BaseContextProvider from "@core/components/BaseContextProvider.tsx"
 import ModalProvider from "@core/components/ModalProvider.tsx"
 import UserRoutes from "@users/Routes.tsx"
-import DashboardRoutes from "@dashboard/Routes.tsx";
+import CallRoutes from "@call/Routes.tsx"
+import MemberRoutes from "@members/Routes.tsx"
 
 export default function App() {
     return (
@@ -14,7 +15,8 @@ export default function App() {
                     <ModalProvider>
                         <Routes>
                             <Route path="/users/*" element={<UserRoutes />} />
-                            <Route path="/*" element={<DashboardRoutes />} />
+                            <Route path="/*" element={<CallRoutes />} />
+                            <Route path="/members/*" element={<MemberRoutes />} />
                         </Routes>
                     </ModalProvider>
                 </BrowserRouter>

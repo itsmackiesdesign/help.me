@@ -9,7 +9,8 @@ export default defineConfig({
         alias: {
             "@core": `${path.resolve(__dirname, "./src/core/")}`,
             "@users": `${path.resolve(__dirname, "./src/users/")}`,
-            "@dashboard": `${path.resolve(__dirname, "./src/dashboard/")}`,
+            "@members": `${path.resolve(__dirname, "./src/members/")}`,
+            "@call": `${path.resolve(__dirname, "./src/call/")}`,
         },
     },
 })

@@ -53,7 +53,7 @@ export default function Layout({ children }: Props) {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink className="nav-btn" to="/clients" end>
+                            <NavLink className="nav-btn" to="/members" end>
                                 <Icon icon={UsersIcon} className="w-4 h-4" />
                                 <span>Clients</span>
                             </NavLink>

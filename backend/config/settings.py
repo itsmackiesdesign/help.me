@@ -52,7 +52,7 @@ INSTALLED_APPS = [
     'django_filters',
     'debug_toolbar',
 
-    'cells',
+    'calls',
     'members',
     'core',
     'users',
@@ -181,6 +181,8 @@ CORS_ALLOWED_ORIGINS = [
 DEFAULT_FIXTURES = [
     # when you run `manage.py fixtures` fixtures below will be loaded.
     'users_and_tokens',
+    'member',
+    'call'
 ]
 JWT_ALGORITHM = 'HS256'
 TOKEN_EXPIRATION = 3 * 30 * 24 * 60 * 60  # 3 month in seconds

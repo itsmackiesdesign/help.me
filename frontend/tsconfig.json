@@ -30,9 +30,12 @@
       "@users/*": [
         "./src/users/*"
       ],
-      "@dashboard/*": [
-        "./src/dashboard/*"
+      "@members/*": [
+        "./src/members/*"
       ],
+      "@call/*": [
+        "./src/call/*"
+      ]
     }
   },
   "include": [
