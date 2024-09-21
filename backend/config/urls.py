@@ -10,7 +10,7 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     path('', RedirectView.as_view(url='/api/v1/toolkit/')),
     path('api/v1/', include([
-        path('toolkit/', include('toolkit.urls')),
+        path('toolkit/', include(('toolkit.urls', "toolkit"), namespace="toolkit")),
         path('users/', include('users.urls')),
         path('members/', include('members.urls')),
         path("calls/", include(("calls.urls", "calls"), namespace="calls")),
