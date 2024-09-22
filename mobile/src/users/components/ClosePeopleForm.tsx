@@ -7,21 +7,26 @@ import { FormProvider, useForm } from "react-hook-form"
 import { ButtonText, InputBox, InputLabel, inputStyle } from "@core/components/molecules"
 import { useTheme } from "@emotion/react"
 import { Fragment, useEffect, useState } from "react"
-import { ContactCreateType, ContactRelationshipType } from "@users/types.ts"
+import { ContactCreateType, ContactRelationshipType, ContactType } from "@users/types.ts"
 import { relations } from "@users/utils/relations.ts"
 import { phoneMask } from "@users/utils/regex.ts"
+import { useContactCreate, useContactUpdate } from "@users/hooks/contact.ts"
 
 type Props = {
-    onSubmit: (data: ContactCreateType) => void
+    onSubmit: (data: ContactType) => void
+    defaultValue?: ContactType
+    onUpdate: (data: ContactType) => void
 }
 
-export default function ClosePeopleForm({ onSubmit }: Props) {
+export default function ClosePeopleForm({ onSubmit, defaultValue, onUpdate }: Props) {
     const theme = useTheme()
     const methods = useForm<ContactCreateType>()
-    const [relation, setRelation] = useState<ContactRelationshipType>()
+    const [relation, setRelation] = useState<ContactRelationshipType | undefined>(defaultValue?.relationship)
     const [buttonDisabled, setButtonDisabled] = useState(true)
 
-    const isLoading = false
+    const contactCreate = useContactCreate()
+    const contactUpdate = useContactUpdate(defaultValue?.id)
+    const isLoading = contactCreate.isLoading || contactUpdate.isLoading
 
     const [phone, fullName] = methods.watch(["phone", "fullName"])
 
@@ -29,13 +34,32 @@ export default function ClosePeopleForm({ onSubmit }: Props) {
         setButtonDisabled(!phone || !fullName)
     }, [phone, fullName])
 
+    useEffect(() => {
+        if (!defaultValue) return
+        setRelation(defaultValue.relationship)
+    }, [defaultValue])
+
     const handleChangeText = (text: string) => {
         setButtonDisabled(text.length !== 14)
+    }
+
+    const handleSubmit = async (data: ContactCreateType) => {
+        if (!relation) return
+        data = { ...data, phone: "998" + data.phone, relationship: relation }
+
+        if (!defaultValue) {
+            const response = await contactCreate.mutateAsync(data)
+            onSubmit(response)
+            return
+        }
+        const response = await contactUpdate.mutateAsync(data)
+        onUpdate(response)
     }
 
     return (
         <FormProvider {...methods}>
             <RNPickerSelect
+                value={relation}
                 onValueChange={(value) => setRelation(value)}
                 items={relations}
                 placeholder={{ label: "Choose relation", value: "" }}
@@ -54,6 +78,7 @@ export default function ClosePeopleForm({ onSubmit }: Props) {
                     <InputBox>
                         <FormInput
                             name="fullName"
+                            defaultValue={defaultValue?.fullName}
                             placeholder={`${relation[0].toUpperCase() + relation.slice(1)}'s full name`}
                             placeholderTextColor={theme.lightGray}
                             style={[inputStyle, { color: theme.secondary }]}
@@ -68,6 +93,7 @@ export default function ClosePeopleForm({ onSubmit }: Props) {
                         <MaskedFormInput
                             name="phone"
                             onChangeText={handleChangeText}
+                            defaultValue={defaultValue?.phone.slice(3)}
                             keyboardType="phone-pad"
                             maxLength={14}
                             placeholder="(00) 000-00-00"
@@ -78,7 +104,7 @@ export default function ClosePeopleForm({ onSubmit }: Props) {
                     </InputBox>
 
                     <Button
-                        onPress={methods.handleSubmit(onSubmit)}
+                        onPress={methods.handleSubmit(handleSubmit)}
                         background={buttonDisabled || isLoading ? theme.secondary : theme.primary}
                         disabled={buttonDisabled || isLoading}
                     >
