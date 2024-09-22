@@ -13,7 +13,7 @@ export default function App() {
         <StrictMode>
             <BaseContextProvider>
                 <BrowserRouter>
-                    <CallListener />
+{/*                     <CallListener /> */}
                     <ModalProvider>
                         <Routes>
                             <Route path="/*" element={<UserRoutes />} />
