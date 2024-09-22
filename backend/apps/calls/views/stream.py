@@ -31,7 +31,7 @@ class EndStreamAPIView(APIView):
             return Response({"error": "Call does not exist"}, 400)
 
         stream_client.video.call("default", call.call_id).end()
-        call.status = Call.STATUS_CHOICES[4][4]
+        call.status = Call.STATUS_CHOICES[4][0]
         call.save()
         return Response(status=status.HTTP_200_OK)
 
