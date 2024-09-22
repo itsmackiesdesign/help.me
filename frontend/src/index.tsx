@@ -6,10 +6,12 @@ import ModalProvider from "@core/components/ModalProvider.tsx"
 import UserRoutes from "@users/Routes.tsx"
 import CallRoutes from "@call/Routes.tsx"
 import MemberRoutes from "@members/Routes.tsx"
+import CallListener from "@call/components/CallListener.tsx"
 
 export default function App() {
     return (
         <StrictMode>
+            <CallListener />
             <BaseContextProvider>
                 <BrowserRouter>
                     <ModalProvider>

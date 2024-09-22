@@ -52,3 +52,9 @@ export type StreamDataType = {
     token: string
     userId: string
 }
+
+export type StreamStartType = {
+    callId: string
+    userId: string
+    token: string
+}

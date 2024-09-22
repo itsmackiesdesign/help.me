@@ -13,7 +13,8 @@ import { UserIcon } from "@heroicons/react/24/solid"
 // import { useEndStream } from "@academy/hooks/stream.ts"
 // import VideoCallRecording from "@academy/components/VideoCallRecording.tsx"
 import { StreamDataType } from "@call/types.ts"
-
+import Button from "@core/components/Button"
+import { ArrowRightIcon } from "@heroicons/react/24/solid"
 type Props = {
     data: StreamDataType
 }
@@ -24,7 +25,6 @@ export default function VideoCallComponent({ data }: Props) {
     const { lessonId } = useParams()
     const navigate = useNavigate()
     // const { mutateAsync: endStream } = useEndStream(lessonId as string)
-    console.log(apiKey)
     const client = new StreamVideoClient({ apiKey, user: { id: data.userId }, token: data.token })
     const call = client.call("default", data.callId)
 
@@ -67,8 +67,16 @@ export default function VideoCallComponent({ data }: Props) {
         }
     }
 
+    const handleNavigate = () => {
+        window.open(`${import.meta.env.VITE_FRONTEND_URL}/calls/call/${data.callId}`, "_blank")
+    }
+
     return (
         <StreamVideo client={client}>
+            <Button className="absolute top-5 right-5 z-50" onClick={handleNavigate}>
+                More
+                <Icon icon={ArrowRightIcon} className="w-5 h-5" />
+            </Button>
             <StreamCall call={call}>
                 <div className="w-full min-h-screen py-3 flex flex-col relative bg-black text-white">
                     <StreamTheme>

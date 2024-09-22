@@ -1,13 +1,16 @@
 from rest_framework import generics
 from rest_framework.generics import get_object_or_404
+from django_filters.rest_framework import DjangoFilterBackend
 
-from members.serializers.member_serializer import MemberSerializer
+from members.serializers.member_serializer import MemberSerializer, MemberDetailSerializer
 from members.models import Member
 from toolkit.views import ListMixin
 
 
 class MemberListCreateAPIView(ListMixin, generics.ListCreateAPIView):
     serializer_class = MemberSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id']
 
     def get_queryset(self):
         return Member.objects.all()
@@ -32,7 +35,7 @@ class MyMemberAPIView(generics.RetrieveAPIView):
 
 class MemberDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Member.objects.all()
-    serializer_class = MemberSerializer
+    serializer_class = MemberDetailSerializer
 
-    def get_queryset(self):
-        return Member.objects.filter(user=self.request.user)
+    def get_object(self):
+        return get_object_or_404(Member, pk=self.kwargs.get('pk'))

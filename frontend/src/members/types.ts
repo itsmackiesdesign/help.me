@@ -16,6 +16,14 @@ export type MemberType = ModelType & {
     extra: string
 }
 
+export type MemberDetailType = ModelType & {
+    birthdate: string
+    user: UserType
+    address: string
+    extra: string
+    contacts: ContactType[]
+}
+
 export type CallType = ModelType & {
     member: ID | MemberType
     status: "initialized" | "called" | "canceled" | "ambulance_requested" | "finished"
@@ -45,4 +53,8 @@ export type ContactType = ModelType & {
     phone: string
     relationship: ContactRelationshipType
     member: ID | MemberType
+}
+export type CallEventStreamType = {
+    id: ID
+    member: MemberType
 }

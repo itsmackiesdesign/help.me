@@ -4,7 +4,7 @@ import { MEMBER_LIST } from "@members/urls.ts"
 import { MemberType } from "@members/types.ts"
 
 export function useMemberList() {
-    const PAGE_SIZE = 100
+    const PAGE_SIZE = 20
 
     return useInfiniteFetch<MemberType>(
         ["members"],

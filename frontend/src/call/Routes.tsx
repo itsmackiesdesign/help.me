@@ -10,7 +10,7 @@ export default function CallRoutes() {
             <Route path="/" element={<Call />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/call/:id" element={<CallDetail />} />
-            <Route path="/video-call" element={<VideoCall />} />
+            <Route path="/video-call/:id" element={<VideoCall />} />
         </Routes>
     )
 }

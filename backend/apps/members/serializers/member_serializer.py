@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from members.models import Member
+from members.serializers.contact import ContactSerializer
 from users.serializers.users import SimpleUserSerializer
 
 
@@ -27,3 +28,12 @@ class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
         fields = ['id', 'birthdate', 'address', 'extra', 'user', 'first_name', 'last_name']
+
+
+class MemberDetailSerializer(serializers.ModelSerializer):
+    user = SimpleUserSerializer(read_only=True)
+    contacts = ContactSerializer(many=True, read_only=True, source='contact_set')
+
+    class Meta:
+        model = Member
+        fields = ['id', 'birthdate', 'address', 'extra', 'user', 'contacts']

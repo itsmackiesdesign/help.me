@@ -10,11 +10,10 @@ import { CallType } from "@call/types"
 export default function Call() {
     const navigate = useNavigate()
     const query = useCallList()
-    
 
     const handleCardClick = (id: number) => {
         navigate(`/calls/call/${id}`)
-    };
+    }
 
     const renderItem = (item: CallType) => (
         <div className="card bg-base-100 shadow-xl transition-transform transform hover:scale-105">

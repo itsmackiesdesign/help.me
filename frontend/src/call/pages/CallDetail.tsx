@@ -11,10 +11,16 @@ import { formatDate } from "@core/utils/date"
 import Button from "@core/components/Button"
 import Badge from "@core/components/Badge"
 import { useMutate } from "@core/hooks/request"
+import { ClipboardIcon } from "@heroicons/react/24/outline"
+import { MemberDetailType } from "@members/types"
+import { MEMBER_DETAIL } from "@members/urls"
+import { ContactType } from "@members/types"
+import Heading from "@core/components/Heading"
 
 export default function CallDetail() {
     const { id } = useParams<{ id: string }>()
     const call = useFetch<CallType>(["calls", id], () => request({ url: CALL_DETAIL.replace("{id}", id as string) }))
+    const member = useFetch<MemberDetailType>(["members", id], () => request({ url: MEMBER_DETAIL.replace("{id}", id as string) }))
 
     const status = {
         initiated: "initiated",
@@ -35,7 +41,7 @@ export default function CallDetail() {
 
     return (
         <Layout>
-            <div className="relative h-96 rounded-lg shadow-lg overflow-hidden bg-base-200">
+            <div className="relative h-[55vh] rounded-lg shadow-lg overflow-hidden bg-base-200">
                 <div className="absolute inset-0 h-full w-full">
                     <iframe
                         src={`https://www.google.com/maps?q=${call.data?.latitude},${call.data?.longitude}&z=15&output=embed`}
@@ -50,7 +56,7 @@ export default function CallDetail() {
             </div>
 
             <Group className="w-full my-5 p-4">
-                <div className="w-1/2 p-6 shadow-lg rounded-lg">
+                <div className="w-1/2 p-6 shadow-lg rounded-lg min-h-min">
                     <h2 className="text-2xl font-bold flex items-center mb-4">
                         {call.data?.member.user.firstName} {call.data?.member.user.lastName}
                         <Button 
@@ -60,6 +66,14 @@ export default function CallDetail() {
                             disabled={call.data?.status === "ambulance_requested"}
                         >
                             Request Ambulance
+                        </Button>
+                        <Button 
+                            size="sm" 
+                            className="ml-2"
+                            onClick={() => navigator.clipboard.writeText(`https://www.google.com/maps?q=${call.data?.latitude},${call.data?.longitude}`)}
+                        >
+                            <ClipboardIcon className="w-5 h-5 text-gray-600" />
+                            Copy address
                         </Button>
                     </h2>
 
@@ -113,6 +127,16 @@ export default function CallDetail() {
                 </div>
 
                 <div className="w-1/2">
+                    <Heading size="xl">Relatives</Heading>
+                    <Group className="flex-wrap flex-row">
+                        {member.data?.contacts.map((item: ContactType) => (
+                            <div key={item.id} className="p-3 shadow-lg rounded-lg">
+                                <p className="text-gray-700 flex gap-2"><strong>Full Name:</strong> {item.fullName}</p>
+                                <p className="text-gray-700 flex gap-2"><strong>Phone:</strong> <a className="link" href={`tel:${item.phone}`}>{item.phone}</a></p>
+                                <p className="text-gray-700 flex gap-2"><strong>Relationship:</strong> {item.relationship}</p>
+                            </div>
+                        ))}
+                    </Group>
                 </div>
             </Group>
         </Layout>
