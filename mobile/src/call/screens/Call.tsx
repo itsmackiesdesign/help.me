@@ -15,7 +15,7 @@ export default function Call({ navigation }: NavigationType) {
         <Container>
             <SafeArea>
                 <Scroll>
-                    <SosButton />
+                    <SosButton navigation={navigation} />
                     <InfoText>Click SOS button if you need help</InfoText>
 
                     <Group>

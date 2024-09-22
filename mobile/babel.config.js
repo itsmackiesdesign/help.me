@@ -27,7 +27,7 @@ module.exports = {
         [
             "module:react-native-dotenv",
             {
-                allowlist: ["API_URL"],
+                allowlist: ["API_URL", "API_STREAM_ID"],
                 envName: "APP_ENV",
                 moduleName: "@env",
                 path: ".env",

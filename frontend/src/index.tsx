@@ -11,9 +11,9 @@ import CallListener from "@call/components/CallListener.tsx"
 export default function App() {
     return (
         <StrictMode>
-            <CallListener />
             <BaseContextProvider>
                 <BrowserRouter>
+                    <CallListener />
                     <ModalProvider>
                         <Routes>
                             <Route path="/*" element={<UserRoutes />} />

@@ -9,9 +9,7 @@ export const useContactList = () => {
 }
 
 export const useContactCreate = () => {
-    return useMutate<ContactType, ContactCreateType>((data) => request({ method: "post", url: CONTACT_LIST, data }), {
-        onError: (error) => console.log(JSON.stringify(error.response?.data, null, 2)),
-    })
+    return useMutate<ContactType, ContactCreateType>((data) => request({ method: "post", url: CONTACT_LIST, data }))
 }
 
 export const useContactUpdate = (id?: number) => {

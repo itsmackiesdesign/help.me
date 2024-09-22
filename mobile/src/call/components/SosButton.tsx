@@ -1,10 +1,13 @@
 import styled from "@emotion/native"
 import { windowWidth } from "@core/utils/demensions.ts"
+import { NavigationType } from "@core/types.ts"
 
-export default function SosButton() {
+export default function SosButton({ navigation }: NavigationType) {
+    const navigateToSos = () => navigation.navigate("SosPage")
+
     return (
         <Wrapper>
-            <Button style={{ width: windowWidth * 0.9, height: windowWidth * 0.9 }}>
+            <Button style={{ width: windowWidth * 0.9, height: windowWidth * 0.9 }} onPress={navigateToSos}>
                 <ButtonText>SOS</ButtonText>
             </Button>
         </Wrapper>

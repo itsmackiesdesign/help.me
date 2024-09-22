@@ -10,12 +10,13 @@ import { ActivityIndicator } from "react-native"
 import { useTheme } from "@emotion/react"
 import { Fragment, useEffect, useState } from "react"
 import { ContactType } from "@users/types.ts"
+import { NavigationType } from "@core/types.ts"
 
 type Props = {
     route: { params: { isSettings?: boolean } }
-}
+} & NavigationType
 
-export default function ClosePeople({ route }: Props) {
+export default function ClosePeople({ route, navigation }: Props) {
     const { isSettings } = route.params
 
     const theme = useTheme()
@@ -43,6 +44,8 @@ export default function ClosePeople({ route }: Props) {
         deleteItem(id)
         setAddContact(false)
     }
+
+    const navigateCall = () => navigation.navigate("Call")
 
     return (
         <Container>
@@ -77,7 +80,7 @@ export default function ClosePeople({ route }: Props) {
                                 </Button>
 
                                 {!isSettings && (
-                                    <Button style={{ backgroundColor: theme.success }}>
+                                    <Button style={{ backgroundColor: theme.success }} onPress={navigateCall}>
                                         <ButtonText>Save and continue</ButtonText>
                                     </Button>
                                 )}

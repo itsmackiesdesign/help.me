@@ -37,6 +37,7 @@ export default function ClosePeopleForm({ onSubmit, defaultValue, onUpdate }: Pr
     useEffect(() => {
         if (!defaultValue) return
         setRelation(defaultValue.relationship)
+        setButtonDisabled(false)
     }, [defaultValue])
 
     const handleChangeText = (text: string) => {
@@ -109,7 +110,13 @@ export default function ClosePeopleForm({ onSubmit, defaultValue, onUpdate }: Pr
                         disabled={buttonDisabled || isLoading}
                     >
                         <ButtonText style={{ color: theme["base-100"] }}>
-                            {buttonDisabled ? "Please fill in all fields" : "Add contact"}
+                            {
+                                buttonDisabled
+                                    ? "Please fill in all fields"
+                                    : defaultValue
+                                    ? "Save changes" // eslint-disable-line
+                                    : "Add contact" // eslint-disable-line
+                            }
                         </ButtonText>
                     </Button>
                 </Fragment>

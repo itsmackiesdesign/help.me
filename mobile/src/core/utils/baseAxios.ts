@@ -3,7 +3,7 @@ import humps from "humps"
 import { API_URL } from "@env"
 import { auth } from "@users/utils/auth"
 
-export const domain = "https://helpme-33ryw.ondigitalocean.app"
+export const domain = API_URL
 
 const baseAxios = axios.create({
     baseURL: `${domain}/api/v1/`,

@@ -12,6 +12,9 @@ import ToastProvider from "@core/components/ToastProvider.tsx"
 import UserInformation from "@users/screens/UserInformation.tsx"
 import MemberInformation from "@users/screens/MemberInformation.tsx"
 import ClosePeople from "@users/screens/ClosePeople.tsx"
+import SosPage from "@call/screens/SosPage.tsx"
+import CallInitialization from "@call/screens/CallInitialization.tsx"
+import VideoStream from "@call/screens/VideoStream.tsx"
 
 const Stack = createStackNavigator<RootStackParamListType>()
 const queryClient = new QueryClient({
@@ -36,6 +39,9 @@ const Router = () => {
                         <Stack.Screen name="MemberInformation" component={MemberInformation} />
                         <Stack.Screen name="ClosePeople" component={ClosePeople} />
                         <Stack.Screen name="Call" component={Call} />
+                        <Stack.Screen name="CallInitialization" component={CallInitialization} />
+                        <Stack.Screen name="SosPage" component={SosPage} />
+                        <Stack.Screen name="VideoStream" component={VideoStream} />
                     </Stack.Navigator>
                 </NavigationContainer>
                 <ToastProvider />

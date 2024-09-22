@@ -33,13 +33,11 @@ export default function MemberInformation({ navigation }: NavigationType) {
     const handleSubmit = async (data: MemberCreateType) => {
         if (!birthday) return
         const date = formatDate(birthday)
-        const firstName = storage.getString("firstName")!
-        const lastName = storage.getString("lastName")!
+        const firstName = storage.getString("firstName") as string
+        const lastName = storage.getString("lastName") as string
         data = { ...data, birthdate: date, firstName, lastName }
-
         await mutateAsync(data)
-
-        navigation.navigate("ClosePeople")
+        navigation.navigate("ClosePeople", { isSettings: false })
     }
 
     const handleDatePick = (data: Date) => {

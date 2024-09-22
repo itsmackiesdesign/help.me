@@ -9,6 +9,9 @@ export type RootStackParamListType = {
     MemberInformation: undefined
     ClosePeople: { isSettings?: boolean }
     Call: undefined
+    SosPage: undefined
+    CallInitialization: undefined
+    VideoStream: { id: number }
 }
 
 export type StackNavigationType = StackNavigationProp<RootStackParamListType>
