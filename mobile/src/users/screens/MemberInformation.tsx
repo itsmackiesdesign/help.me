@@ -52,7 +52,7 @@ export default function MemberInformation({ navigation }: NavigationType) {
             <SafeArea>
                 <Scroll contentContainerStyle={{ minHeight: windowHeight * 0.9 }}>
                     <FormProvider {...methods}>
-                        <Header title="Health information" />
+                        <Header title="Health information" showBackButton={false} />
                         <ProgressBar currentStep={2} />
 
                         <Wrapper>

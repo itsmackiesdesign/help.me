@@ -7,7 +7,7 @@ export type RootStackParamListType = {
     ConfirmCode: { phone: string }
     UserInformation: undefined
     MemberInformation: undefined
-    ClosePeople: undefined
+    ClosePeople: { isSettings?: boolean }
     Call: undefined
 }
 

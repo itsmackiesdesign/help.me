@@ -9,6 +9,8 @@ const buttonHeight = {
 }
 
 export default function Call({ navigation }: NavigationType) {
+    const navigateContacts = () => navigation.navigate("ClosePeople", { isSettings: true })
+
     return (
         <Container>
             <SafeArea>
@@ -17,7 +19,7 @@ export default function Call({ navigation }: NavigationType) {
                     <InfoText>Click SOS button if you need help</InfoText>
 
                     <Group>
-                        <Button style={buttonHeight}>
+                        <Button style={buttonHeight} onPress={navigateContacts}>
                             <ButtonText style={{ fontSize: 24 }}>Contacts</ButtonText>
                         </Button>
 

@@ -4,3 +4,6 @@ export const REFRESH = "/users/refresh"
 export const USER_SETTINGS = "/users/user_settings"
 
 export const MEMBER = "/members/member/"
+
+export const CONTACT_LIST = "/members/contacts/"
+export const CONTACT_DETAIL = "/members/contacts/{id}/"
