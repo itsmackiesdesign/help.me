@@ -31,7 +31,7 @@ export default function UserInformation({ navigation }: NavigationType) {
         storage.set("firstName", response.firstName)
         storage.set("lastName", response.lastName)
 
-        navigation.navigate("MemberInformation")
+        navigation.navigate("MemberInformation", { isSettings: false })
     }
 
     return (

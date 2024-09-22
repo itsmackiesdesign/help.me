@@ -19,12 +19,12 @@ export type UserUpdateType = Omit<UserType, "id">
 export type CheckInResponseType = {
     token: string
     refresh: string
-    user: Omit<UserType, "phone">
+    user: UserType
 }
 
 export type MemberType = ModelType & {
     birthdate: string | Date
-    user: UserType
+    user: UserType & { phone: string }
     address: string
     extra: string
 }

@@ -23,6 +23,7 @@ export default function CallInitialization({ navigation }: NavigationType) {
             timeout: 60000,
         })
 
+        const { id } = await callCreate.mutateAsync({ status: "called", latitude, longitude })
         showToast({ type: "success", title: "We received your location and contact information" })
         navigation.navigate("Call")
         // console.log(id)

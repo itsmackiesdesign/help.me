@@ -10,6 +10,7 @@ const buttonHeight = {
 
 export default function Call({ navigation }: NavigationType) {
     const navigateContacts = () => navigation.navigate("ClosePeople", { isSettings: true })
+    const navigatePersonal = () => navigation.navigate("MemberInformation", { isSettings: true })
 
     return (
         <Container>
@@ -23,8 +24,8 @@ export default function Call({ navigation }: NavigationType) {
                             <ButtonText style={{ fontSize: 24 }}>Contacts</ButtonText>
                         </Button>
 
-                        <Button style={buttonHeight}>
-                            <ButtonText style={{ fontSize: 24 }}>Settings</ButtonText>
+                        <Button style={buttonHeight} onPress={navigatePersonal}>
+                            <ButtonText style={{ fontSize: 24 }}>Personal info</ButtonText>
                         </Button>
                     </Group>
                 </Scroll>

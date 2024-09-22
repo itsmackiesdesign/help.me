@@ -2,7 +2,7 @@ import { MemberType } from "@users/types.ts"
 import { ModelType } from "@core/types.ts"
 
 export type CallCreateType = {
-    status: "initiated"
+    status: "called"
     longitude: number
     latitude: number
 }

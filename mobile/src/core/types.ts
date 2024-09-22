@@ -6,7 +6,7 @@ export type RootStackParamListType = {
     SignIn: undefined
     ConfirmCode: { phone: string }
     UserInformation: undefined
-    MemberInformation: undefined
+    MemberInformation: { isSettings?: boolean }
     ClosePeople: { isSettings?: boolean }
     Call: undefined
     SosPage: undefined

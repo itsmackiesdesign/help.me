@@ -36,7 +36,7 @@ export default function VideoStream({ route, navigation }: Props) {
     return (
         <StreamVideo client={client}>
             <SafeAreaView style={styles.container}>
-                <VideoStreamComponent callId={callId} navigation={navigation} />
+                <VideoStreamComponent callId={callId} id={id} navigation={navigation} />
             </SafeAreaView>
         </StreamVideo>
     )

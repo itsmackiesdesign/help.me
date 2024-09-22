@@ -1,6 +1,6 @@
 import { useMutate } from "@core/hooks/request.ts"
 import { request } from "@core/utils/baseAxios.ts"
-import { CALL, CALL_STREAM_START } from "@call/urls.ts"
+import { CALL, CALL_STREAM_END, CALL_STREAM_START } from "@call/urls.ts"
 import { CallCreateType, CallType, JoinStreamType } from "@call/types.ts"
 
 export const useCallCreate = () => {
@@ -9,5 +9,10 @@ export const useCallCreate = () => {
 
 export const useCallJoinStream = (id: number) => {
     const url = CALL_STREAM_START.replace("{id}", id.toString())
+    return useMutate<JoinStreamType, void>(() => request({ method: "put", url }))
+}
+
+export const useCallEndStream = (id: number) => {
+    const url = CALL_STREAM_END.replace("{id}", id.toString())
     return useMutate<JoinStreamType, void>(() => request({ method: "put", url }))
 }

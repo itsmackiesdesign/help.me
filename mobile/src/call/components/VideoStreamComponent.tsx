@@ -2,14 +2,17 @@ import { useEffect, useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import { Call, StreamCall, useStreamVideoClient, CallContent } from "@stream-io/video-react-native-sdk"
 import { NavigationType } from "@core/types.ts"
+import { useCallEndStream } from "@call/hooks/calls.ts"
 
 type Props = {
     callId: string
+    id: number
 } & NavigationType
 
-export const VideoStreamComponent = ({ callId, navigation }: Props) => {
+export const VideoStreamComponent = ({ callId, navigation, id }: Props) => {
     const [call, setCall] = useState<Call | null>(null)
     const client = useStreamVideoClient()
+    const { mutateAsync } = useCallEndStream(id)
 
     useEffect(() => {
         if (!client) return
@@ -21,12 +24,16 @@ export const VideoStreamComponent = ({ callId, navigation }: Props) => {
             .catch((error) => {
                 console.log("Failed to join the call:", error)
             })
+        return () => {
+            currentCall?.leave()
+        }
     }, [client])
 
     const onHangupCall = async () => {
         await call?.endCall()
-        // await endStream()
         navigation.navigate("Call")
+        const data = await mutateAsync()
+        console.log(data)
     }
 
     if (!call) {
