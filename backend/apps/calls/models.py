@@ -5,15 +5,23 @@ from toolkit.models import BaseModel
 
 
 class Call(BaseModel):
+    INITIATED = "initiated"
+    CALLED = "called"
+    VIEWED = "viewed"
+    CANCELED = "canceled"
+    AMBULANCE_REQUESTED = "ambulance_requested"
+    FINISHED = "finished"
+
     STATUS_CHOICES = (
-        ('initiated', 'Вызов инициирован'),
-        ('called', 'Вызван'),
-        ('canceled', 'Отменен'),
-        ('ambulance_requested', 'Вызвана скорая помощь'),
-        ('finished', 'Вызов завершен'),
+        (INITIATED, "Вызов инициирован"),
+        (CALLED, "Вызван"),
+        (VIEWED, "Рассматриваемый"),
+        (CANCELED, "Отменен"),
+        (AMBULANCE_REQUESTED, "Вызвана скорая помощь"),
+        (FINISHED, "Вызов завершен"),
     )
     member = models.ForeignKey("members.Member", on_delete=RESTRICT)
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='initiated')
     initiated_at = models.DateTimeField(auto_now_add=True)
     longitude = models.FloatField(null=True)
     latitude = models.FloatField(null=True)

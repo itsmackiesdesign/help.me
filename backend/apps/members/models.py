@@ -6,7 +6,7 @@ from toolkit.models import BaseModel
 
 class Member(BaseModel):
     birthdate = models.DateField("Дата рождения")
-    user = models.OneToOneField(verbose_name="Позьзователь", to='users.User', on_delete=RESTRICT)
+    user = models.OneToOneField(verbose_name="Позьзователь", to='users.User', on_delete=RESTRICT, related_name='member')
     address = models.CharField("Адрес", max_length=255)
     extra = models.TextField()
 
