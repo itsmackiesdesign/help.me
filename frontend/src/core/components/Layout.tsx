@@ -6,7 +6,7 @@ import Tooltip from "@core/components/Tooltip.tsx"
 import Button from "@core/components/Button.tsx"
 import { ReactNode } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
-import { ArrowLeftStartOnRectangleIcon, ChartPieIcon, CogIcon } from "@heroicons/react/24/outline"
+import { ArrowLeftStartOnRectangleIcon, ChartPieIcon, CogIcon, VideoCameraIcon } from "@heroicons/react/24/outline"
 import { signOut } from "@users/utils/auth.ts"
 import { useQueryClient } from "react-query"
 import { ChartBarIcon, UsersIcon } from "@heroicons/react/20/solid"
@@ -68,6 +68,15 @@ export default function Layout({ children }: Props) {
                                 <Icon icon={CogIcon} className="w-4 h-4" />
                                 <span>
                                     Settings <span className="badge badge-accent badge-sm text-gray-400">soon...</span>
+                                </span>
+                            </p>
+                        </li>
+                        <li>
+                            <p aria-disabled={true} className="text-gray-400">
+                                <Icon icon={VideoCameraIcon} className="w-4 h-4" />
+                                <span>
+                                    Video consultation{" "}
+                                    <span className="badge badge-accent badge-sm text-gray-400">soon...</span>
                                 </span>
                             </p>
                         </li>

@@ -1497,8 +1497,8 @@ SPEC CHECKSUMS:
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   stream-react-native-webrtc: 5e1dfdd07a6dd778ccd281175bbbae674dad56ae
   stream-video-react-native: f176dd2a8ce11bd1e5039f390b719117e41d47d8
-  Yoga: 805bf71192903b20fc14babe48080582fee65a80
+  Yoga: d17d2cc8105eed528474683b42e2ea310e1daf61
 
 PODFILE CHECKSUM: 31352a8029256fc863f6c537cf755d90e6550ff7
 
-COCOAPODS: 1.15.2
+COCOAPODS: 1.13.0

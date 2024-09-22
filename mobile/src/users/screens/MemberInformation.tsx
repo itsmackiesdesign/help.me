@@ -22,7 +22,7 @@ export default function MemberInformation({ navigation }: NavigationType) {
     const [birthday, setBirthday] = useState<Date>()
     const [open, setOpen] = useState(false)
 
-    const { mutateAsync, isLoading } = useMemberCreate()
+    const { mutateAsync, isLoading, error } = useMemberCreate()
 
     const [address] = methods.watch(["address"])
 

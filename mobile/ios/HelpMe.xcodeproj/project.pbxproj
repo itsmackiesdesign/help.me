@@ -12,15 +12,6 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		667B85ED2C9F9B3000516191 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667B85EC2C9F9B3000516191 /* WidgetKit.framework */; };
-		667B85EF2C9F9B3000516191 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 667B85EE2C9F9B3000516191 /* SwiftUI.framework */; };
-		667B85F22C9F9B3000516191 /* HelpMe_Bundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B85F12C9F9B3000516191 /* HelpMe_Bundle.swift */; };
-		667B85F62C9F9B3000516191 /* HelpMe_.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B85F52C9F9B3000516191 /* HelpMe_.swift */; };
-		667B85F82C9F9B3000516191 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B85F72C9F9B3000516191 /* AppIntent.swift */; };
-		667B85FA2C9F9B3200516191 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 667B85F92C9F9B3200516191 /* Assets.xcassets */; };
-		667B85FE2C9F9B3200516191 /* HelpMe!Extension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 667B85EB2C9F9B3000516191 /* HelpMe!Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		6689BBE92C9FA3C600514418 /* HelpMe_LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B85F32C9F9B3000516191 /* HelpMe_LiveActivity.swift */; };
-		6689BBEA2C9FA3C700514418 /* HelpMe_LiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 667B85F32C9F9B3000516191 /* HelpMe_LiveActivity.swift */; };
 		7699B88040F8A987B510C191 /* libPods-HelpMe-HelpMeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-HelpMe-HelpMeTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -33,13 +24,6 @@
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
 			remoteInfo = HelpMe;
 		};
-		667B85FC2C9F9B3200516191 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 667B85EA2C9F9B3000516191;
-			remoteInfo = "HelpMe!Extension";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,7 +33,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				667B85FE2C9F9B3200516191 /* HelpMe!Extension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,16 +55,8 @@
 		5B7EB9410499542E8C5724F5 /* Pods-HelpMe-HelpMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpMe-HelpMeTests.debug.xcconfig"; path = "Target Support Files/Pods-HelpMe-HelpMeTests/Pods-HelpMe-HelpMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-HelpMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelpMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		667B85E62C9F9A9D00516191 /* HelpMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HelpMe.entitlements; path = HelpMe/HelpMe.entitlements; sourceTree = "<group>"; };
-		667B85EB2C9F9B3000516191 /* HelpMe!Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "HelpMe!Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		667B85EC2C9F9B3000516191 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		667B85EE2C9F9B3000516191 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		667B85F12C9F9B3000516191 /* HelpMe_Bundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMe_Bundle.swift; sourceTree = "<group>"; };
-		667B85F32C9F9B3000516191 /* HelpMe_LiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMe_LiveActivity.swift; sourceTree = "<group>"; };
-		667B85F52C9F9B3000516191 /* HelpMe_.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpMe_.swift; sourceTree = "<group>"; };
-		667B85F72C9F9B3000516191 /* AppIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIntent.swift; sourceTree = "<group>"; };
-		667B85F92C9F9B3200516191 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		667B85FB2C9F9B3200516191 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		667B86032C9F9C2500516191 /* HelpMe!Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "HelpMe!Extension.entitlements"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = HelpMe/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-HelpMe-HelpMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelpMe-HelpMeTests.release.xcconfig"; path = "Target Support Files/Pods-HelpMe-HelpMeTests/Pods-HelpMe-HelpMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -101,15 +76,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C80B921A6F3F58F76C31292 /* libPods-HelpMe.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		667B85E82C9F9B3000516191 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				667B85EF2C9F9B3000516191 /* SwiftUI.framework in Frameworks */,
-				667B85ED2C9F9B3000516191 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,19 +125,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		667B85F02C9F9B3000516191 /* HelpMe! */ = {
-			isa = PBXGroup;
-			children = (
-				667B85F12C9F9B3000516191 /* HelpMe_Bundle.swift */,
-				667B85F32C9F9B3000516191 /* HelpMe_LiveActivity.swift */,
-				667B85F52C9F9B3000516191 /* HelpMe_.swift */,
-				667B85F72C9F9B3000516191 /* AppIntent.swift */,
-				667B85F92C9F9B3200516191 /* Assets.xcassets */,
-				667B85FB2C9F9B3200516191 /* Info.plist */,
-			);
-			path = "HelpMe!";
-			sourceTree = "<group>";
-		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -182,11 +135,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				667B86032C9F9C2500516191 /* HelpMe!Extension.entitlements */,
 				13B07FAE1A68108700A75B9A /* HelpMe */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* HelpMeTests */,
-				667B85F02C9F9B3000516191 /* HelpMe! */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -201,7 +152,6 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* HelpMe.app */,
 				00E356EE1AD99517003FC87E /* HelpMeTests.xctest */,
-				667B85EB2C9F9B3000516191 /* HelpMe!Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,29 +207,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				667B85FD2C9F9B3200516191 /* PBXTargetDependency */,
 			);
 			name = HelpMe;
 			productName = HelpMe;
 			productReference = 13B07F961A680F5B00A75B9A /* HelpMe.app */;
 			productType = "com.apple.product-type.application";
-		};
-		667B85EA2C9F9B3000516191 /* HelpMe!Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 667B85FF2C9F9B3200516191 /* Build configuration list for PBXNativeTarget "HelpMe!Extension" */;
-			buildPhases = (
-				667B85E72C9F9B3000516191 /* Sources */,
-				667B85E82C9F9B3000516191 /* Frameworks */,
-				667B85E92C9F9B3000516191 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "HelpMe!Extension";
-			productName = "HelpMe!Extension";
-			productReference = 667B85EB2C9F9B3000516191 /* HelpMe!Extension.appex */;
-			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -296,9 +228,6 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
-					};
-					667B85EA2C9F9B3000516191 = {
-						CreatedOnToolsVersion = 15.4;
 					};
 				};
 			};
@@ -317,7 +246,6 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* HelpMe */,
 				00E356ED1AD99517003FC87E /* HelpMeTests */,
-				667B85EA2C9F9B3000516191 /* HelpMe!Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -336,14 +264,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		667B85E92C9F9B3000516191 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				667B85FA2C9F9B3200516191 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,19 +414,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
-				6689BBE92C9FA3C600514418 /* HelpMe_LiveActivity.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		667B85E72C9F9B3000516191 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				667B85F62C9F9B3000516191 /* HelpMe_.swift in Sources */,
-				667B85F82C9F9B3000516191 /* AppIntent.swift in Sources */,
-				667B85F22C9F9B3000516191 /* HelpMe_Bundle.swift in Sources */,
-				6689BBEA2C9FA3C700514418 /* HelpMe_LiveActivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,11 +426,6 @@
 			target = 13B07F861A680F5B00A75B9A /* HelpMe */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
-		667B85FD2C9F9B3200516191 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 667B85EA2C9F9B3000516191 /* HelpMe!Extension */;
-			targetProxy = 667B85FC2C9F9B3200516191 /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -530,7 +433,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-HelpMe-HelpMeTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -558,7 +460,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-HelpMe-HelpMeTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = HelpMeTests/Info.plist;
@@ -596,7 +497,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -626,7 +527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -636,93 +537,6 @@
 				PRODUCT_NAME = HelpMe;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
-		667B86002C9F9B3200516191 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "HelpMe!Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = NDRN9VG95V;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "HelpMe!/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "HelpMe!";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.helpme.com.HelpMe-";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		667B86012C9F9B3200516191 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_ENTITLEMENTS = "HelpMe!Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = NDRN9VG95V;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu17;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "HelpMe!/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "HelpMe!";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "app.helpme.com.HelpMe-";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -888,15 +702,6 @@
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
 				13B07F951A680F5B00A75B9A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		667B85FF2C9F9B3200516191 /* Build configuration list for PBXNativeTarget "HelpMe!Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				667B86002C9F9B3200516191 /* Debug */,
-				667B86012C9F9B3200516191 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
