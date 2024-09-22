@@ -17,7 +17,7 @@ class StartStreamAPIView(APIView):
         call_response = stream_client.video.call("default", f"call_{pk}")
         user_id = f"id_{call.member.id}_{call.member.user.phone}"
         token = stream_client.create_token(user_id)
-        call.status = Call.STATUS_CHOICES[1][1]
+        call.status = Call.STATUS_CHOICES[0][0]
         call_id = call_response.id
         call.call_id = call_id
         call.save()
