@@ -2,8 +2,8 @@ import json
 import time
 
 from django.http import StreamingHttpResponse
+from django.views import View
 from rest_framework.generics import GenericAPIView
-from rest_framework.views import APIView
 
 from calls.models import Call
 from calls.serializers.call import CallSerializer
@@ -21,7 +21,7 @@ class CallDetailViewSet(RetrieveMixin, UpdateMixin, GenericAPIView):
     serializer_class = CallSerializer
 
 
-class CallEventStreamViewSet(APIView):
+class CallEventStreamViewSet(View):
     authentication_classes = (CustomParamsAuthentication,)
 
     def get(self, request):
