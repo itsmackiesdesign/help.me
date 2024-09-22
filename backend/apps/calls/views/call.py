@@ -33,6 +33,6 @@ class CallEventStreamViewSet(View):
                     serializer = CallSerializer(instance, many=True)
                     yield "data: %s\n\n" % json.dumps(serializer.data)
 
-                time.sleep(5)
+                time.sleep(1)
 
         return StreamingHttpResponse(event_stream(), content_type="text/event-stream")
