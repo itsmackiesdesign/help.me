@@ -27,7 +27,7 @@ class CallEventStreamViewSet(View):
     def get(self, request):
         def event_stream():
             while True:
-                instance = Call.objects.filter(status=Call.STATUS_CHOICES[1][1])
+                instance = Call.objects.filter(status=Call.STATUS_CHOICES[0][0])
 
                 if instance:
                     serializer = CallSerializer(instance, many=True)
